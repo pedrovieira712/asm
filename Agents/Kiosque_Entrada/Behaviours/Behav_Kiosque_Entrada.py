@@ -11,12 +11,12 @@ class RecvEntryRequest(CyclicBehaviour):
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "PEDIDO_ENTRADA":
+        # Formato ACL: performative="request"
+        if msg.metadata.get("performative") != "request":
             return
         
-        # body: {"id_veiculo": "ABC123", "tipo": "carro", "altura": 1.5, ...}
-        dados_veiculo = eval(msg.body) if isinstance(msg.body, str) else msg.body
+        # Deserializar com jsonpickle
+        dados_veiculo = jsonpickle.decode(msg.body)
         id_veiculo = dados_veiculo.get("id_veiculo")
         
         print(f"[Quiosque Entrada] Pedido de entrada do veículo: {id_veiculo}")
@@ -36,11 +36,13 @@ class CheckAvailability(CyclicBehaviour):
         if self.agent.pedido_entrada and not self.agent.verificacao_enviada:
             dados_veiculo = self.agent.pedido_entrada.get("dados_veiculo")
             
-            # Envia pedido de verificação ao Manager
+            # Envia pedido de verificação ao Manager com performative="request"
             if hasattr(self.agent, 'manager_jid'):
-                msg_manager = Message(to=self.agent.manager_jid)
-                msg_manager.metadata["tipo"] = "ENTRADA_VERIFICAR"
-                msg_manager.body = str(dados_veiculo)
+                msg_manager = Message(
+                    to=self.agent.manager_jid,
+                    metadata={"performative": "request"},
+                    body=jsonpickle.encode(dados_veiculo)
+                )
                 await self.send(msg_manager)
                 
                 self.agent.verificacao_enviada = True
@@ -61,11 +63,12 @@ class RegisterEntry(CyclicBehaviour):
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "ENTRADA_RESPOSTA":
+        # Formato ACL: performative="confirm" ou "inform"
+        if msg.metadata.get("performative") not in ["confirm", "inform"]:
             return
         
-        resposta = msg.body  # "PODE_ENTRAR" ou "NAO_PODE_ENTRAR"
+        # Deserializar resposta
+        resposta = jsonpickle.decode(msg.body)  # "PODE_ENTRAR" ou "NAO_PODE_ENTRAR"
         quiosque = self.agent
         
         if not hasattr(quiosque, 'pedido_entrada') or not quiosque.pedido_entrada:
@@ -81,17 +84,22 @@ class RegisterEntry(CyclicBehaviour):
             # Registar hora de entrada
             hora_entrada = datetime.now()
             
-            # Envia hora de entrada ao Quiosque de Saída
+            # Envia hora de entrada ao Quiosque de Saída com performative="inform"
             if hasattr(quiosque, 'quiosque_saida_jid'):
-                msg_saida = Message(to=quiosque.quiosque_saida_jid)
-                msg_saida.metadata["tipo"] = "HORA_ENTRADA"
-                msg_saida.body = str({"id_veiculo": id_veiculo, "hora_entrada": hora_entrada})
+                entrada_data = {"id_veiculo": id_veiculo, "hora_entrada": hora_entrada.isoformat()}
+                msg_saida = Message(
+                    to=quiosque.quiosque_saida_jid,
+                    metadata={"performative": "inform"},
+                    body=jsonpickle.encode(entrada_data)
+                )
                 await self.send(msg_saida)
             
-            # Confirma ao veículo
-            msg_veiculo = Message(to=veiculo_sender)
-            msg_veiculo.metadata["tipo"] = "ENTRADA_OK"
-            msg_veiculo.body = "Pode Entrar"
+            # Confirma ao veículo com performative="confirm"
+            msg_veiculo = Message(
+                to=veiculo_sender,
+                metadata={"performative": "confirm"},
+                body=jsonpickle.encode("ENTRADA_APROVADA")
+            )
             await self.send(msg_veiculo)
             
             print(f"[Quiosque Entrada] Veículo {id_veiculo} autorizado a entrar")
@@ -112,11 +120,13 @@ class SuggestAlternatives(CyclicBehaviour):
             await asyncio.sleep(0.5)
             return
         
-        # Envia pedido de reencaminhamento ao CentralManager
+        # Envia pedido de reencaminhamento ao CentralManager com performative="request"
         if hasattr(self.agent, 'central_manager_jid'):
-            msg_central = Message(to=self.agent.central_manager_jid)
-            msg_central.metadata["tipo"] = "REENCAMINHAMENTO"
-            msg_central.body = "Preciso de parques alternativos"
+            msg_central = Message(
+                to=self.agent.central_manager_jid,
+                metadata={"performative": "request"},
+                body=jsonpickle.encode("REENCAMINHAMENTO")
+            )
             await self.send(msg_central)
             
             print(f"[Quiosque Entrada] Pedido de alternativas enviado ao Central Manager")

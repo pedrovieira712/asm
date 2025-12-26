@@ -10,11 +10,12 @@ class ReceberPedidoSaida(CyclicBehaviour): # Veiculo ->
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "PEDIDO_SAIDA":
+        # Formato ACL: performative="request"
+        if msg.metadata.get("performative") != "request":
             return
         
-        id_veiculo = msg.body
+        # Deserializar com jsonpickle
+        id_veiculo = jsonpickle.decode(msg.body)
         print(f"[Barreira Saída] Recebido pedido de saída do veículo: {id_veiculo}")
         
         # Guarda informações do pedido
@@ -28,11 +29,13 @@ class VerificarPagamento(CyclicBehaviour): # -> Manager
         if hasattr(self.agent, 'pedido_veiculo') and not hasattr(self.agent, 'pedido_enviado'):
             id_veiculo = self.agent.pedido_veiculo
             
-            # Envia pedido ao Manager (JID do Manager deve ser configurado externamente)
+            # Envia pedido ao Manager com performative="request"
             if hasattr(self.agent, 'manager_jid'):
-                msg_manager = Message(to=self.agent.manager_jid)
-                msg_manager.metadata["tipo"] = "PEDIDO_SAIR"
-                msg_manager.body = id_veiculo
+                msg_manager = Message(
+                    to=self.agent.manager_jid,
+                    metadata={"performative": "request"},
+                    body=jsonpickle.encode(id_veiculo)
+                )
                 await self.send(msg_manager)
                 print(f"[Barreira Saída] Enviado pedido de verificação ao Manager para: {id_veiculo}")
                 
@@ -48,21 +51,24 @@ class ReceberConfirmacaoPagamento(CyclicBehaviour): # Manager ->
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "RESPOSTA_SAIDA":
+        # Formato ACL: performative="confirm" ou "inform"
+        if msg.metadata.get("performative") not in ["confirm", "inform"]:
             return
         
-        resposta_manager = msg.body
+        # Deserializar resposta
+        resposta_manager = jsonpickle.decode(msg.body)
         print(f"[Barreira Saída] Resposta do Manager: {resposta_manager}")
         
         # Guarda a resposta do Manager
         self.agent.resposta_pagamento = resposta_manager
         
-        # Responde ao veículo
+        # Responde ao veículo com performative="inform"
         if hasattr(self.agent, 'veiculo_sender'):
-            msg_veiculo = Message(to=self.agent.veiculo_sender)
-            msg_veiculo.metadata["tipo"] = "RESPOSTA_SAIDA"
-            msg_veiculo.body = resposta_manager
+            msg_veiculo = Message(
+                to=self.agent.veiculo_sender,
+                metadata={"performative": "inform"},
+                body=jsonpickle.encode(resposta_manager)
+            )
             await self.send(msg_veiculo)
             
             if resposta_manager == "PAGAMENTO_PENDENTE":
@@ -82,9 +88,11 @@ class EnviarConfirmacaoSaida(CyclicBehaviour): # -> Sensor
             # Só notifica sensor se a barreira abriu
             if resposta in ["ABRIR_BARREIRA", "ABRIR_BARREIRA_COM_MULTA"]:
                 if hasattr(self.agent, 'sensor_jid'):
-                    msg_sensor = Message(to=self.agent.sensor_jid)
-                    msg_sensor.metadata["tipo"] = "SENSOR_LIVRE"
-                    msg_sensor.body = "Veículo saiu"
+                    msg_sensor = Message(
+                        to=self.agent.sensor_jid,
+                        metadata={"performative": "inform"},
+                        body=jsonpickle.encode("SENSOR_LIVRE")
+                    )
                     await self.send(msg_sensor)
                     print(f"[Barreira Saída] Sensor notificado - Saída livre")
                 

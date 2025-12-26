@@ -10,14 +10,17 @@ class RecvEntryHourClient(CyclicBehaviour):
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "HORA_ENTRADA":
+        # Formato ACL: performative="inform"
+        if msg.metadata.get("performative") != "inform":
             return
         
-        # body: {"id_veiculo": "ABC123", "hora_entrada": datetime_obj}
-        dados = eval(msg.body) if isinstance(msg.body, str) else msg.body
+        # Deserializar com jsonpickle
+        dados = jsonpickle.decode(msg.body)
         id_veiculo = dados.get("id_veiculo")
-        hora_entrada = dados.get("hora_entrada")
+        hora_entrada_str = dados.get("hora_entrada")
+        
+        # Converter string ISO para datetime
+        hora_entrada = datetime.fromisoformat(hora_entrada_str) if isinstance(hora_entrada_str, str) else hora_entrada_str
         
         # Guarda a hora de entrada do veículo
         self.agent.horas_entrada[id_veiculo] = hora_entrada
@@ -30,11 +33,12 @@ class RecvExitRequest(CyclicBehaviour):
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "PEDIDO_PAGAMENTO":
+        # Formato ACL: performative="request"
+        if msg.metadata.get("performative") != "request":
             return
         
-        id_veiculo = msg.body
+        # Deserializar
+        id_veiculo = jsonpickle.decode(msg.body)
         quiosque = self.agent
         
         print(f"[Quiosque Saída] Pedido de pagamento do veículo: {id_veiculo}")
@@ -53,18 +57,22 @@ class RecvExitRequest(CyclicBehaviour):
                 valor += quiosque.multa_fixa
                 print(f"[Quiosque Saída] ⚠️ Passou da hora de fecho! Multa adicionada.")
             
-            # Envia valor ao veículo
-            msg_veiculo = Message(to=str(msg.sender))
-            msg_veiculo.metadata["tipo"] = "VALOR_A_PAGAR"
-            msg_veiculo.body = str(round(valor, 2))
+            # Envia valor ao veículo com performative="inform"
+            msg_veiculo = Message(
+                to=str(msg.sender),
+                metadata={"performative": "inform"},
+                body=jsonpickle.encode({"valor": round(valor, 2), "tempo_minutos": tempo_permanencia})
+            )
             await self.send(msg_veiculo)
             
             print(f"[Quiosque Saída] Valor calculado para {id_veiculo}: €{valor:.2f} ({tempo_permanencia:.0f} min)")
         else:
-            # Veículo não tem hora de entrada registada
-            msg_veiculo = Message(to=str(msg.sender))
-            msg_veiculo.metadata["tipo"] = "ERRO"
-            msg_veiculo.body = "Hora de entrada não encontrada"
+            # Veículo não tem hora de entrada registada - envia erro
+            msg_veiculo = Message(
+                to=str(msg.sender),
+                metadata={"performative": "inform"},
+                body=jsonpickle.encode({"erro": "Hora de entrada não encontrada"})
+            )
             await self.send(msg_veiculo)
             print(f"[Quiosque Saída] ❌ Hora de entrada não encontrada para {id_veiculo}")
 
@@ -75,29 +83,38 @@ class RecvPayment(CyclicBehaviour):
         if msg is None:
             return
         
-        tipo_msg = msg.metadata.get("tipo")
-        if tipo_msg != "PAGAMENTO":
+        # Formato ACL: performative="inform"
+        if msg.metadata.get("performative") != "inform":
             return
         
-        # body: {"id_veiculo": "ABC123", "valor_pago": 10.5}
-        dados = eval(msg.body) if isinstance(msg.body, str) else msg.body
-        id_veiculo = dados.get("id_veiculo")
+        # Deserializar dados do pagamento
+        dados = jsonpickle.decode(msg.body)
+        id_veiculo = dados.get("id_veiculo") or dados.get("matricula")
         valor_pago = dados.get("valor_pago")
         
         print(f"[Quiosque Saída] ✅ Pagamento recebido de {id_veiculo}: €{valor_pago}")
         
-        # Notifica o Manager que o veículo pagou
+        # Notifica o Manager que o veículo pagou com performative="inform"
         if hasattr(self.agent, 'manager_jid'):
-            msg_manager = Message(to=self.agent.manager_jid)
-            msg_manager.metadata["tipo"] = "CONFIRMACAO_PAGAMENTO"
-            msg_manager.body = str({"id_veiculo": id_veiculo, "hora_pagamento": datetime.now(), "valor": valor_pago})
+            pagamento_data = {
+                "id_veiculo": id_veiculo, 
+                "hora_pagamento": datetime.now().isoformat(), 
+                "valor": valor_pago
+            }
+            msg_manager = Message(
+                to=self.agent.manager_jid,
+                metadata={"performative": "inform"},
+                body=jsonpickle.encode(pagamento_data)
+            )
             await self.send(msg_manager)
             print(f"[Quiosque Saída] Pagamento de {id_veiculo} notificado ao Manager")
         
-        # Confirma ao veículo
-        msg_veiculo = Message(to=str(msg.sender))
-        msg_veiculo.metadata["tipo"] = "PAGAMENTO_OK"
-        msg_veiculo.body = "Pagamento confirmado"
+        # Confirma ao veículo com performative="confirm"
+        msg_veiculo = Message(
+            to=str(msg.sender),
+            metadata={"performative": "confirm"},
+            body=jsonpickle.encode("PAGAMENTO_CONFIRMADO")
+        )
         await self.send(msg_veiculo)
 
 
