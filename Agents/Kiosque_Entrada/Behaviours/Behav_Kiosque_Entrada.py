@@ -2,35 +2,148 @@ from spade.behaviour import OneShotBehaviour, CyclicBehaviour, PeriodicBehaviour
 from spade.message import Message
 import jsonpickle
 from datetime import datetime
+import asyncio
 
 # Behaviour para receber pedidos de entrada de veículos
 class RecvEntryRequest(CyclicBehaviour):
-    pass
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+        
+        tipo_msg = msg.metadata.get("tipo")
+        if tipo_msg != "PEDIDO_ENTRADA":
+            return
+        
+        # body: {"id_veiculo": "ABC123", "tipo": "carro", "altura": 1.5, ...}
+        dados_veiculo = eval(msg.body) if isinstance(msg.body, str) else msg.body
+        id_veiculo = dados_veiculo.get("id_veiculo")
+        
+        print(f"[Quiosque Entrada] Pedido de entrada do veículo: {id_veiculo}")
+        
+        # Guarda pedido para processar
+        self.agent.pedido_entrada = {
+            "dados_veiculo": dados_veiculo,
+            "veiculo_sender": str(msg.sender)
+        }
 
 # Behaviour para verificar disponibilidade com o ManagerParque pergunta se há vaga
 class CheckAvailability(CyclicBehaviour):
-    pass
+    async def run(self):
+        if not hasattr(self.agent, 'pedido_entrada') or not hasattr(self.agent, 'verificacao_enviada'):
+            self.agent.verificacao_enviada = False
+        
+        if self.agent.pedido_entrada and not self.agent.verificacao_enviada:
+            dados_veiculo = self.agent.pedido_entrada.get("dados_veiculo")
+            
+            # Envia pedido de verificação ao Manager
+            if hasattr(self.agent, 'manager_jid'):
+                msg_manager = Message(to=self.agent.manager_jid)
+                msg_manager.metadata["tipo"] = "ENTRADA_VERIFICAR"
+                msg_manager.body = str(dados_veiculo)
+                await self.send(msg_manager)
+                
+                self.agent.verificacao_enviada = True
+                print(f"[Quiosque Entrada] Verificação enviada ao Manager")
+        
+        await asyncio.sleep(0.1)
 
 # Behaviour para validar passe anual
 class ValidateAnnualPass(CyclicBehaviour):
-    pass
+    async def run(self):
+        # Pode ser expandido para validar passes anuais
+        await asyncio.sleep(0.5)
 
 # Behaviour para registar a entrada do veículo, guarda hora de entrada, comunica com ManagerParque e Barreira de Entrada
 class RegisterEntry(CyclicBehaviour):
-    pass
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+        
+        tipo_msg = msg.metadata.get("tipo")
+        if tipo_msg != "ENTRADA_RESPOSTA":
+            return
+        
+        resposta = msg.body  # "PODE_ENTRAR" ou "NAO_PODE_ENTRAR"
+        quiosque = self.agent
+        
+        if not hasattr(quiosque, 'pedido_entrada') or not quiosque.pedido_entrada:
+            return
+        
+        dados_veiculo = quiosque.pedido_entrada.get("dados_veiculo")
+        veiculo_sender = quiosque.pedido_entrada.get("veiculo_sender")
+        id_veiculo = dados_veiculo.get("id_veiculo")
+        
+        if resposta == "PODE_ENTRAR":
+            print(f"[Quiosque Entrada] ✅ Veículo {id_veiculo} pode entrar")
+            
+            # Registar hora de entrada
+            hora_entrada = datetime.now()
+            
+            # Envia hora de entrada ao Quiosque de Saída
+            if hasattr(quiosque, 'quiosque_saida_jid'):
+                msg_saida = Message(to=quiosque.quiosque_saida_jid)
+                msg_saida.metadata["tipo"] = "HORA_ENTRADA"
+                msg_saida.body = str({"id_veiculo": id_veiculo, "hora_entrada": hora_entrada})
+                await self.send(msg_saida)
+            
+            # Confirma ao veículo
+            msg_veiculo = Message(to=veiculo_sender)
+            msg_veiculo.metadata["tipo"] = "ENTRADA_OK"
+            msg_veiculo.body = "Pode Entrar"
+            await self.send(msg_veiculo)
+            
+            print(f"[Quiosque Entrada] Veículo {id_veiculo} autorizado a entrar")
+        
+        else:  # NAO_PODE_ENTRAR
+            print(f"[Quiosque Entrada] ❌ Veículo {id_veiculo} não pode entrar")
+            # Ativa comportamento de sugerir alternativas
+            quiosque.precisa_alternativas = True
+        
+        # Limpa pedido
+        quiosque.pedido_entrada = None
+        quiosque.verificacao_enviada = False
 
 # Behaviour para sugerir alternativas se o parque estiver cheio, comunica com CentralManager, recebe lista de parques alternativos e envia sugestões ao veículo
 class SuggestAlternatives(CyclicBehaviour):
-    pass
+    async def run(self):
+        if not hasattr(self.agent, 'precisa_alternativas') or not self.agent.precisa_alternativas:
+            await asyncio.sleep(0.5)
+            return
+        
+        # Envia pedido de reencaminhamento ao CentralManager
+        if hasattr(self.agent, 'central_manager_jid'):
+            msg_central = Message(to=self.agent.central_manager_jid)
+            msg_central.metadata["tipo"] = "REENCAMINHAMENTO"
+            msg_central.body = "Preciso de parques alternativos"
+            await self.send(msg_central)
+            
+            print(f"[Quiosque Entrada] Pedido de alternativas enviado ao Central Manager")
+            self.agent.precisa_alternativas = False
+        
+        await asyncio.sleep(0.5)
 
 # Behaviour para receber e armazenar informações do parque (como ocupação, horários)
 class RecvParkInfo(CyclicBehaviour):
-    pass
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+        
+        tipo_msg = msg.metadata.get("tipo")
+        if tipo_msg == "PARK_INFO":
+            info = msg.body
+            print(f"[Quiosque Entrada] Informação do parque recebida: {info}")
 
 # Behaviour para enviar confirmação de entrada ao veículo
 class SendEntryConfirmation(OneShotBehaviour):
-    pass
+    async def run(self):
+        # Pode ser usado para confirmações adicionais
+        pass
 
 # Behaviour para processar compra de passe anual - vai dar para comprar no """"app"""""
 class ProcessAnnualPassPurchase(CyclicBehaviour):
-    pass
+    async def run(self):
+        # Pode ser expandido para processar compra de passes
+        await asyncio.sleep(1)

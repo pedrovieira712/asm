@@ -1,7 +1,7 @@
 from spade.agent import Agent
 import asyncio
 from datetime import datetime
-from Behaviours.Behav_Kiosque_Entrada import *
+from Kiosque_Entrada.Behaviours.Behav_Kiosque_Entrada import *
 
 class Kiosque_Entrada(Agent):
     """

@@ -1,7 +1,7 @@
 from spade.agent import Agent
 import asyncio
 from datetime import datetime
-from Behaviours.Behav_Kiosque_Saida import *
+from Kiosque_Saida.Behaviours.Behav_Kiosque_Saida import *
 
 class Kiosque_saida(Agent):
     tarifa_minuto = 0.05
