@@ -1,6 +1,6 @@
 # ManagerParque/__init__.py
 from spade.agent import Agent
-from ManagerParque.Behaviours.Mp_Behav import *
+from ManagerParque.Behaviours.Mp_behav import *
 
 class ManagerParque(Agent):
     def __init__(self, jid, password, park_id, capacity, max_height=None):
@@ -26,17 +26,20 @@ class ManagerParque(Agent):
         self.supported_vehicle_types = ["carro", "moto"]
         self.supports_electric = True
 
+    def print(self, txt):
+        print(f"[MANAGER_PARQUE {self.park_id}] {txt}")
+
     async def setup(self):
         self.print(f"ManagerParque [{self.park_id}] iniciado")
 
         # 1) Entrada (disponível / não disponível) – quiosque de entrada
-        self.add_behaviour(HandleEntranceFromKiosk())
+        self.add_behaviour(VerificarEntradaKiosque())
 
         # 2) Saída + multa – barreira de saída
-        self.add_behaviour(HandleExitFromBarrier())
+        self.add_behaviour(ProcessarSaidaBarreira())
 
         # 3) Reencaminhamento – pedidos do Manager Central
-        self.add_behaviour(HandleForwardingRequestFromCentral())
+        self.add_behaviour(ResponderReencaminhamentoCentral())
 
     # ---------- Helpers simples ----------
 

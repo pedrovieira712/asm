@@ -1,0 +1,13 @@
+# Framework Multi-Agente
+spade==3.3.2
+
+# Variáveis de Ambiente
+python-dotenv==1.0.0
+
+# Interface Gráfica (incluído no Python)
+# tkinter (built-in)
+
+# Dependências do SPADE
+aiohttp>=3.8.0
+aioxmpp>=0.12.0
+slixmpp>=1.8.0

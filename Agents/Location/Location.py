@@ -10,6 +10,9 @@ class Location(Agent):
 
         self.park_locations = {}
     
+    def print(self, txt):
+        print(f"[LOCATION] {txt}")
+    
     async def setup(self):
         self.print("Location Agent started")
         

@@ -20,8 +20,19 @@ class Kiosque_Entrada(Agent):
         self.vehicles_waiting = {}  # Veículos à espera de entrada
         self.annual_passes = {}  # Base de dados de passes anuais {matricula: {validade, tipo}}
         
+        # Atributos necessários para os behaviours
+        self.pedido_entrada = None
+        self.verificacao_enviada = False
+        self.resposta_recebida = None
+        self.validacao_passe_enviada = False
+        self.passe_validado = None
+        self.entrada_registada = False
+        
+    def print(self, txt):
+        print(f"[KIOSQUE_ENTRADA {self.park_id}] {txt}")
+        
     async def setup(self):
-        print(f"[KIOSQUE_ENTRADA - Parque {self.park_id}] Iniciado")
+        self.print(f"Iniciado")
         
         # Receber pedidos de entrada de veículos
         recv_entry_request_behav = RecvEntryRequest()

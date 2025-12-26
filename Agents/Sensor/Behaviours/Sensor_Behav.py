@@ -2,6 +2,7 @@
 from spade.behaviour import CyclicBehaviour
 from spade.message import Message
 from datetime import datetime, timedelta
+import asyncio
 
 
 class AtualizarEstadoSensor(CyclicBehaviour):
@@ -57,7 +58,7 @@ class SimularOcupacaoLugar(CyclicBehaviour):
 
         # Se não for sensor de lugar, não faz nada
         if sensor.tipo_sensor != "LUGAR":
-            await self.sleep(1)
+            await asyncio.sleep(1)
             return
 
         # Só faz sentido se estivermos em estado RESERVADO
@@ -70,4 +71,4 @@ class SimularOcupacaoLugar(CyclicBehaviour):
                 # Apagamos a hora de reserva para não voltar a entrar
                 sensor._hora_reserva = None
 
-        await self.sleep(1)
+        await asyncio.sleep(1)

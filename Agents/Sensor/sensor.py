@@ -36,6 +36,9 @@ class Sensor(Agent):
         #  - 'OCUPADO'   : veículo detetado (Ocupa Lugar)
         self.estado = "LIVRE"
 
+    def print(self, txt):
+        print(f"[SENSOR {self.tipo_sensor}] {txt}")
+
     async def setup(self):
         self.print(f"Sensor [{self.tipo_sensor}] iniciado. Lugar: {self.id_lugar}")
 

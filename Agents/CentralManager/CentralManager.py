@@ -33,6 +33,14 @@ class CentralManager(Agent):
 
         self.vehicles = []
         self.parking_spots = []
+        
+        # Atributos necessários para os behaviours
+        self.pedido_reencaminhamento = None
+        self.localizacao_pedida = False
+        self.parque_sugerido = None
+    
+    def print(self, txt):
+        print(f"[CENTRAL_MANAGER] {txt}")
     
     async def setup(self):
         self.print("Central Manager started")

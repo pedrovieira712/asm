@@ -26,10 +26,10 @@ class RecvForwarding(CyclicBehaviour):
 
 class SendParkingSpotRequest(CyclicBehaviour):
     async def run(self):
-        if not hasattr(self.agent, 'pedido_reencaminhamento') or not hasattr(self.agent, 'localizacao_pedida'):
+        if not hasattr(self.agent, 'localizacao_pedida'):
             self.agent.localizacao_pedida = False
         
-        if self.agent.pedido_reencaminhamento and not self.agent.localizacao_pedida:
+        if hasattr(self.agent, 'pedido_reencaminhamento') and self.agent.pedido_reencaminhamento and not self.agent.localizacao_pedida:
             # Pede ao Location o parque mais próximo
             if hasattr(self.agent, 'location_jid'):
                 msg_location = Message(to=self.agent.location_jid)
