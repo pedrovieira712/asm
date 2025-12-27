@@ -1,7 +1,8 @@
 from random import random
 from spade.agent import Agent
+import math
 
-from Location.Behaviours.Loc_Behav import *
+from .Behaviours.Loc_Behav import *
 
 class Location(Agent):
     
@@ -10,14 +11,27 @@ class Location(Agent):
 
         self.park_locations = {}
     
+    def print(self, txt):
+        print(f"[LOCATION] {txt}")
+    
     async def setup(self):
-        self.print("Location Agent started")
-        
-        recv_requests_behav = RecvRequestsLocation()
-        self.add_behaviour(recv_requests_behav)
-        
-        send_location_info_behav = SendLocationInfo()
-        self.add_behaviour(send_location_info_behav)
+        self.add_behaviour(RecvRequestsLocation())
+
+    def get_closest_park(self, current_location):
+        if not self.park_locations:
+            return None
+
+        closest_park = None
+        min_distance = float("inf")
+
+        for park_jid, park_location in self.park_locations.items():
+            distance = abs(current_location - park_location)
+            
+            if distance < min_distance:
+                min_distance = distance
+                closest_park = park_jid
+
+        return closest_park
 
     def get_park_locations(self):
         return self.park_locations

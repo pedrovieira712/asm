@@ -1,9 +1,238 @@
 from spade.behaviour import CyclicBehaviour, OneShotBehaviour, PeriodicBehaviour
 from spade.message import Message
 import jsonpickle
+import asyncio
+from Config import Config as cfg
 
-class SendFowardingRequestBehaviour(OneShotBehaviour):
-    pass
+class SendEntryRequestBehaviour(OneShotBehaviour):
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        kiosk_entry_jid = cfg.get_kiosk_entry_jid(park_manager_jid)
 
-class ReceiveFowardingResponseBehaviour(OneShotBehaviour):
-    pass
+        if not self.agent.is_currently_parked():
+            msg = Message(
+                to=kiosk_entry_jid,
+                metadata={"performative": "entry_request"},
+                body=jsonpickle.encode({
+                    "vehicle_id": self.agent.get_plate(),
+                    "vehicle_info": {
+                        "vehicle_type": self.agent.get_vehicle_type(),
+                        "user_type": self.agent.get_user_type(),
+                        "vehicle_height": self.agent.get_vehicle_height(),
+                    }
+                })
+            )
+
+            await self.send(msg)
+            print(f"[Vehicle {self.agent.get_plate()}] Entry request sent to kiosk entry at park {park_manager_jid}.")
+
+class RecvEntryDecision(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        performative = msg.metadata.get("performative")
+
+        if performative == "entry_authorized" and cfg.identify(msg.sender) == "kiosk_entry":
+            body = jsonpickle.decode(msg.body)
+            print(f"[Vehicle {self.agent.get_plate()}] Entry authorized.")
+            if self.agent.is_waiting_at_park():
+                self.agent.set_waiting(False)
+                self.agent.add_behaviour(SendExitWaitingZoneRequest())
+            else:
+                self.agent.set_parked(True)
+                await asyncio.sleep(5)
+                if not self.agent.is_skipping_payment_process():
+                    self.agent.add_behaviour(SendPaymentRequest())
+                else:
+                    self.agent.set_payment_skipping(False)
+                    self.agent.add_behaviour(SendExitRequest())
+
+        elif performative == "entry_denied" and cfg.identify(msg.sender) == "kiosk_entry":
+            body = jsonpickle.decode(msg.body)
+            print(f"[Vehicle {self.agent.get_plate()}] Entry denied.")
+
+            if self.agent.prefers_redirect:
+                self.agent.add_behaviour(SendRedirectRequest())
+            else:
+                self.agent.add_behaviour(WaitAtParkBehaviour())
+
+            
+class WaitAtParkBehaviour(OneShotBehaviour):
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        wait_zone_jid = cfg.get_wait_zone_jid(park_manager_jid)
+
+        msg = Message(
+            to=wait_zone_jid,
+            metadata={"performative": "wait_entry"},
+            body=jsonpickle.encode({
+                "vehicle_id": self.agent.get_plate(),
+            })
+        )
+
+        await self.send(msg)
+        self.agent.set_waiting(True)
+        print(f"[Vehicle {self.agent.get_plate()}] Wait notification sent to wait zone of park {park_manager_jid}.")
+
+class SendExitWaitingZoneRequest(OneShotBehaviour):
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        wait_zone_jid = cfg.get_wait_zone_jid(park_manager_jid)
+
+        msg = Message(
+            to=wait_zone_jid,
+            metadata={"performative": "wait_exit"},
+            body=jsonpickle.encode({
+                "vehicle_id": self.agent.get_plate(),
+            })
+        )
+
+        await self.send(msg)
+        print(f"[Vehicle {self.agent.get_plate()}] Exit wait notification sent to wait zone of park {park_manager_jid}.")
+
+class SendRedirectRequest(OneShotBehaviour):
+    async def run(self):
+        central_manager_jid = cfg.get_central_manager_jid()
+
+        msg = Message(
+            to=central_manager_jid,
+            metadata={"performative": "redirect_park_request"},
+            body=jsonpickle.encode({
+                "vehicle_id": self.agent.get_plate(),
+                "current_location": self.agent.get_location(),
+                 "vehicle_info": {
+                    "vehicle_type": self.agent.get_vehicle_type(),
+                    "user_type": self.agent.get_user_type(),
+                    "vehicle_height": self.agent.get_vehicle_height(),
+                }
+            })
+        )
+
+        await self.send(msg)
+        print(f"[Vehicle {self.agent.get_plate()}] Redirect request sent to central manager.")
+
+
+class RecvRedirectResponse(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "redirect_park_response" and cfg.identify(msg.sender) == "central_manager"):
+            msg_body = jsonpickle.decode(msg.body)
+
+            next_location = msg_body.get("next_location")
+
+            print(f"[Vehicle {self.agent.get_plate()}] Redirected to park at location {next_location}.")
+
+            self.agent.set_location(next_location)
+            self.agent.add_behaviour(SendEntryRequestBehaviour())
+
+class SendPaymentRequest(OneShotBehaviour):
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        kiosk_exit_jid = cfg.get_kiosk_exit_jid(park_manager_jid)
+
+        if self.agent.is_currently_parked():
+            msg = Message(
+                to=kiosk_exit_jid,
+                metadata={"performative": "payment_request"},
+                body=jsonpickle.encode({
+                    "vehicle_id": self.agent.get_plate()
+                })
+            )
+
+            await self.send(msg)
+            print(f"[Vehicle {self.agent.get_plate()}] Payment request sent to kiosk exit at park {park_manager_jid}.")
+
+class RecvPaymentAmount(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "payment_amount" and cfg.identify(msg.sender) == "kiosk_exit"):
+            msg_body = jsonpickle.decode(msg.body)
+            amount = msg_body.get("amount")
+
+            print(f"[Vehicle {self.agent.get_plate()}] Payment amount received: {amount}€.")
+
+            self.agent.add_behaviour(SendPayment(amount))
+
+class SendPayment(OneShotBehaviour):
+    def __init__(self, amount):
+        super().__init__()
+        self.amount = amount
+
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        kiosk_exit_jid = cfg.get_kiosk_exit_jid(park_manager_jid)
+
+        msg = Message(
+            to=kiosk_exit_jid,
+            metadata={"performative": "payment_done"},
+            body=jsonpickle.encode({
+                "vehicle_id": self.agent.get_plate(),
+            })
+        )
+        await self.send(msg)
+        print(f"[Vehicle {self.agent.get_plate()}] Payment of {self.amount}€ sent to kiosk exit at park {park_manager_jid}.")
+
+class SendExitRequest(OneShotBehaviour):
+    async def run(self):
+        park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+        barrier_exit_jid = cfg.get_barrier_exit_jid(park_manager_jid)
+
+        if self.agent.is_currently_parked():
+            msg = Message(
+                to=barrier_exit_jid,
+                metadata={"performative": "exit_request"},
+                body=jsonpickle.encode({
+                    "vehicle_id": self.agent.get_plate(),
+                })
+            )
+            await self.send(msg)
+            print(f"[Vehicle {self.agent.get_plate()}] Exit request sent to barrier exit at park {park_manager_jid}.")
+
+class RecvPaymentWarning(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "payment_warning" and cfg.identify(msg.sender) == "park_manager"):
+            print(f"[Vehicle {self.agent.get_plate()}] Payment warning received from park manager.")
+            self.agent.add_behaviour(SendPaymentRequest())
+
+class RecvPaymentConfirmation(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "payment_confirmed" and cfg.identify(msg.sender) == "park_manager"):
+            print(f"[Vehicle {self.agent.get_plate()}] Payment confirmed by park manager.")
+            self.agent.add_behaviour(SendExitRequest())
+
+class VehicleRetryEntryRequestBehaviour(PeriodicBehaviour):
+    async def run(self):
+        if self.agent.is_waiting_at_park():
+            self.agent.add_behaviour(SendEntryRequestBehaviour())
+
+            park_manager_jid = cfg.get_park_jid(self.agent.get_location())
+
+            print(f"[Vehicle {self.agent.get_plate()}] Retrying entry request as vehicle is waiting at park {park_manager_jid}.")
+
+class ReceiveCanExitResponse(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "can_exit" and cfg.identify(msg.sender) == "park_manager"):
+            print(f"[Vehicle {self.agent.get_plate()}] Received confirmation to exit the park.")
+
+            self.agent.set_parked(False)
+

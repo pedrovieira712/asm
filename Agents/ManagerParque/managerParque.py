@@ -1,90 +1,173 @@
-# ManagerParque/__init__.py
 from spade.agent import Agent
-from ManagerParque.Behaviours.Mp_Behav import *
+from .Behaviours.Mp_behav import *
 
 class ManagerParque(Agent):
-    def __init__(self, jid, password, park_id, capacity, max_height=None):
+    def __init__(self, jid, password, park_id, capacity, max_height, location):
         super().__init__(jid, password)
 
         self.park_id = park_id
         self.capacity = capacity
         self.max_height = max_height
-
-        # Lista de lugares (podes adaptar a estrutura)
-        self.parking_spots = []      # cada lugar: {"id": 1, "ocupado": False, ...}
+        self.location = location
         self.occupied_spots = 0
 
-        # Pagamentos registados por veículo
-        #   ex: {"AA-00-BB": {"pago": True, "hora_pagamento": datetime_obj}}
-        self.payments = {}
+        self.parking_spots = {}
+        self.parking_spots_info = {}
+        self.spot_sensors = {}
+        self.paymetns_record = {}
+        self.sensor_vehicles = {}
+        self.entry_times = {}
+        self.vehicle_parking_spots = {}
 
-        # Multas associadas ao veículo
-        self.fines = {}              # ex: {"AA-00-BB": [lista_de_multas]}
+        self.vehicle_types = ["car", "motorcycle", "truck", "caravan", "bus"]
+        self.user_types = ["normal", "pregnant", "reduced_mobility", "elderly"]
 
-        # Características que o parque suporta (para reencaminhamento)
-        #   ex: tipos de veículo, altura máxima, etc.
-        self.supported_vehicle_types = ["carro", "moto"]
-        self.supports_electric = True
 
+    def print(self, txt):
+        print(f"[MANAGER_PARQUE {self.park_id}] {txt}")
+    
     async def setup(self):
-        self.print(f"ManagerParque [{self.park_id}] iniciado")
+        self.add_behaviour(ReceiveRedirectVehicleRequestBehaviour())
+        self.add_behaviour(ReceiveEntryRequestBehaviour())
+        self.add_behaviour(ReceivePaymentConfirmationBehaviour())
+        self.add_behaviour(ReceivePaymentVerificationBehaviour())
+        self.add_behaviour(ReceiveEntrytimeRequestBehaviour())
 
-        # 1) Entrada (disponível / não disponível) – quiosque de entrada
-        self.add_behaviour(HandleEntranceFromKiosk())
-
-        # 2) Saída + multa – barreira de saída
-        self.add_behaviour(HandleExitFromBarrier())
-
-        # 3) Reencaminhamento – pedidos do Manager Central
-        self.add_behaviour(HandleForwardingRequestFromCentral())
-
-    # ---------- Helpers simples ----------
-
-    def get_free_spots(self):
-        return self.capacity - self.occupied_spots
-
-    def has_free_spot_for(self, vehicle_info: dict) -> bool:
-        """
-        Verifica se existe lugar disponível que corresponda
-        às características do veículo (altura, tipo, elétrico, etc.).
-        Aqui podes pôr a tua lógica real.
-        """
-        if self.get_free_spots() <= 0:
+    def is_valid_request(self, vehicle_type, user_type):
+        return (
+            vehicle_type in self.vehicle_types and
+            user_type in self.user_types
+        )
+    
+    def check_availability(self, vehicle_type, user_type, vehicle_height):
+        if not self.is_valid_request(vehicle_type, user_type):
             return False
 
-        # Exemplos de verificações
-        v_type = vehicle_info.get("tipo")
-        v_height = vehicle_info.get("altura")
-        is_electric = vehicle_info.get("eletrico", False)
-
-        if v_type and v_type not in self.supported_vehicle_types:
+        if self.occupied_spots >= self.capacity:
             return False
 
-        if self.max_height is not None and v_height is not None:
-            if v_height > self.max_height:
-                return False
-
-        if is_electric and not self.supports_electric:
+        if vehicle_height is not None and vehicle_height > self.max_height:
             return False
 
-        return True
+        for spot_id, is_occupied in self.parking_spots.items():
+            if is_occupied:
+                continue
 
-    def is_payment_valid(self, vehicle_id, now, max_delay_minutes=15):
-        """
-        Verifica se o veículo pagou e se ainda está dentro dos 15 minutos.
-        Devolve (pago, fora_de_tempo)
-        """
-        info = self.payments.get(vehicle_id)
-        if not info or not info.get("pago"):
-            return False, False
+            spot_info = self.parking_spots_info.get(spot_id, {})
 
-        hora_pagamento = info.get("hora_pagamento")
-        if hora_pagamento is None:
-            return True, False
+            allowed_vehicle_types = spot_info.get("allowed_vehicle_types")
+            if allowed_vehicle_types and vehicle_type not in allowed_vehicle_types:
+                continue
 
-        delta = now - hora_pagamento
-        fora_de_tempo = delta.total_seconds() > max_delay_minutes * 60
-        return True, fora_de_tempo
+            allowed_user_types = spot_info.get("allowed_user_types")
+            if allowed_user_types and user_type not in allowed_user_types:
+                continue
 
-    def add_fine(self, vehicle_id, motivo):
-        self.fines.setdefault(vehicle_id, []).append(motivo)
+            return True
+
+        return False
+
+    
+    def get_free_spot(self, vehicle_type, user_type):
+        for spot_id, is_occupied in self.parking_spots.items():
+            if is_occupied:
+                continue
+
+            spot_info = self.parking_spots_info.get(spot_id, {})
+
+            allowed_vehicle_types = spot_info.get("allowed_vehicle_types")
+            if allowed_vehicle_types and vehicle_type not in allowed_vehicle_types:
+                continue
+
+            allowed_user_types = spot_info.get("allowed_user_types")
+            if allowed_user_types and user_type not in allowed_user_types:
+                continue
+
+            return spot_id
+
+        return None
+    
+    def mark_spot_occupied(self, spot_id):
+        if spot_id in self.parking_spots and not self.parking_spots[spot_id]:
+            self.parking_spots[spot_id] = True
+            self.occupied_spots += 1
+    
+    def mark_spot_free(self, spot_id):
+        if spot_id in self.parking_spots and self.parking_spots[spot_id]:
+            self.parking_spots[spot_id] = False
+            self.occupied_spots -= 1
+    
+    def add_parking_spot(self, spot_id, allowed_vehicle_types=None, allowed_user_types=None):
+        self.parking_spots[spot_id] = False
+        self.parking_spots_info[spot_id] = {
+            "allowed_vehicle_types": allowed_vehicle_types,
+            "allowed_user_types": allowed_user_types
+        }
+
+    def remove_parking_spot(self, spot_id):
+        if spot_id not in self.parking_spots:
+            return
+
+        if self.parking_spots.get(spot_id, False):
+            self.occupied_spots -= 1
+
+        del self.parking_spots[spot_id]
+
+        if spot_id in self.parking_spots_info:
+            del self.parking_spots_info[spot_id]
+
+        if spot_id in self.spot_sensors:
+            del self.spot_sensors[spot_id]
+    
+    def add_sensor_for_spot(self, spot_id, sensor_jid):
+        self.spot_sensors[spot_id] = sensor_jid
+    
+    def remove_sensor_for_spot(self, spot_id):
+        if spot_id in self.spot_sensors:
+            del self.spot_sensors[spot_id]
+
+    def get_sensor_for_spot(self, spot_id):
+        return self.spot_sensors.get(spot_id)
+    
+    def record_payment(self, vehicle_id, boolean):
+        self.paymetns_record[vehicle_id] = boolean
+    
+    def has_paid(self, vehicle_id):
+        return self.paymetns_record.get(vehicle_id, False)
+    
+    def rem_payment_record(self, vehicle_id):
+        if vehicle_id in self.paymetns_record:
+            del self.paymetns_record[vehicle_id]
+
+    def associate_vehicle_with_sensor(self, vehicle_id, sensor_jid):
+        self.sensor_vehicles[vehicle_id] = sensor_jid
+    
+    def get_sensor_for_vehicle(self, vehicle_id):
+        return self.sensor_vehicles.get(vehicle_id)
+    
+    def rem_sensor_for_vehicle(self, vehicle_id):
+        if vehicle_id in self.sensor_vehicles:
+            del self.sensor_vehicles[vehicle_id]
+    
+    def record_entry_time(self, vehicle_id, entry_time):
+        self.entry_times[vehicle_id] = entry_time
+
+    def get_entry_time(self, vehicle_id):
+        return self.entry_times.get(vehicle_id)
+    
+    def rem_entry_time(self, vehicle_id):
+        if vehicle_id in self.entry_times:
+            del self.entry_times[vehicle_id]
+
+    def associate_vehicle_with_spot(self, vehicle_id, spot_id):
+        self.vehicle_parking_spots[vehicle_id] = spot_id
+    
+    def get_vehicle_spot(self, vehicle_id):
+        return self.vehicle_parking_spots.get(vehicle_id)
+    
+    def rem_vehicle_spot_association(self, vehicle_id):
+        if vehicle_id in self.vehicle_parking_spots:  
+            del self.vehicle_parking_spots[vehicle_id]
+    
+    
+    

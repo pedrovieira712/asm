@@ -1,65 +1,47 @@
-# ZonadeEspera/Behaviours/behaviours.py
-
-from spade.behaviour import CyclicBehaviour
+from spade.behaviour import CyclicBehaviour, OneShotBehaviour, PeriodicBehaviour
 from spade.message import Message
+import jsonpickle
+from Config import Config as cfg
 
-
-class ReceberPedidosEspera(CyclicBehaviour):
-    """
-    Recebe veículos que devem ser colocados na fila de espera.
-    Mensagem esperada:
-        metadata["tipo"] = "ENTRAR_ESPERA"
-        body = id do veículo
-    """
-
+class VehicleWaitingRequest(CyclicBehaviour):
     async def run(self):
         msg = await self.receive(timeout=1)
         if msg is None:
             return
 
-        if msg.metadata.get("tipo") != "ENTRAR_ESPERA":
-            return
+        performative = msg.metadata.get("performative")
 
-        veiculo = msg.body
-        zona = self.agent
+        if performative == "wait_entry" and cfg.identify(msg.sender) == "vehicle":
+            msg_body = jsonpickle.decode(msg.body)
+            vehicle_id = msg_body.get("vehicle_id")
 
-        zona.fila.append(veiculo)
-        zona.print(f"Veículo {veiculo} colocado na fila. Fila atual: {zona.fila}")
+            print(f"[Waiting Zone] Vehicle {vehicle_id} is requesting to enter the waiting zone at park {self.agent.park_jid}.")
 
-        # Responder ao ManagerParque (opcional)
-        resposta = Message(to=str(msg.sender))
-        resposta.metadata["tipo"] = "ENTRAR_ESPERA_CONFIRMADO"
-        await self.send(resposta)
+            if vehicle_id:
+                self.agent.add_waiting_vehicle(str(msg.sender))
 
-
-class FornecerVeiculoAoParque(CyclicBehaviour):
-    """
-    ManagerParque -> ZonaEspera:
-        metadata["tipo"] = "PEDIR_VEICULO"
-
-    ZonaEspera:
-        se houver -> responde com "VEICULO"
-        se não houver -> responde "SEM_VEICULO"
-    """
-
+class VehicleWaitingRequestExit(CyclicBehaviour):
     async def run(self):
         msg = await self.receive(timeout=1)
         if msg is None:
             return
 
-        if msg.metadata.get("tipo") != "PEDIR_VEICULO":
-            return
+        performative = msg.metadata.get("performative")
 
-        zona = self.agent
+        if performative == "wait_exit" and cfg.identify(msg.sender) == "vehicle":
+            msg_body = jsonpickle.decode(msg.body)
+            vehicle_id = msg_body.get("vehicle_id")
 
-        resposta = Message(to=str(msg.sender))
-        resposta.metadata["tipo"] = "RESPOSTA_PEDIR_VEICULO"
+            print(f"[Waiting Zone] Vehicle {vehicle_id} is requesting to exit the waiting zone at park {self.agent.park_jid}.")
 
-        if zona.fila:
-            prox = zona.fila.pop(0)
-            resposta.body = prox
-            zona.print(f"Enviado veículo {prox} ao parque. Fila: {zona.fila}")
-        else:
-            resposta.body = "SEM_VEICULO"
+            if vehicle_id:
+                self.agent.remove_waiting_vehicle(str(msg.sender))
 
-        await self.send(resposta)
+
+
+
+
+            
+
+
+

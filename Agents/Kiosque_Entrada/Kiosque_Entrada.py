@@ -1,48 +1,38 @@
 from spade.agent import Agent
 import asyncio
 from datetime import datetime
-from Behaviours.Behav_Kiosque_Entrada import *
+from .Behaviours.Behav_Kiosque_Entrada import *
 
-class Kiosque_Entrada(Agent):
-    """
-    Quiosque de Entrada - Ponto inicial de interação com o parque
-    Responsável por:
-    - Receber pedidos de entrada
-    - Verificar disponibilidade
-    - Validar passes anuais
-    - Registar hora de entrada
-    - Comunicar com Manager do Parque e Barreira de Entrada
-    """
-    
-    def __init__(self, jid, password, park_id):
+class Kiosque_Entrada(Agent):    
+    def __init__(self, jid, password, park_jid):
         super().__init__(jid, password)
-        self.park_id = park_id
-        self.vehicles_waiting = {}  # Veículos à espera de entrada
-        self.annual_passes = {}  # Base de dados de passes anuais {matricula: {validade, tipo}}
+        self.park_jid = park_jid
+        self.vehicles_waiting = {}
+        self.vehicles = {}  
+        
+    def print(self, txt):
+        print(f"[KIOSQUE_ENTRADA {self.park_jid}] {txt}")
         
     async def setup(self):
-        print(f"[KIOSQUE_ENTRADA - Parque {self.park_id}] Iniciado")
-        
-        # Receber pedidos de entrada de veículos
-        recv_entry_request_behav = RecvEntryRequest()
-        self.add_behaviour(recv_entry_request_behav)
-        
-        # Verificar disponibilidade com o ManagerParque
-        check_availability_behav = CheckAvailability()
-        self.add_behaviour(check_availability_behav)
-
-        # Validar passe anual
-        validate_annual_pass_behav = ValidateAnnualPass()
-        self.add_behaviour(validate_annual_pass_behav)
-
-        # Registar entrada e comunicar com barreira
-        register_entry_behav = RegisterEntry()
-        self.add_behaviour(register_entry_behav)
-
-        # Oferecer alternativas se parque cheio
-        suggest_alternatives_behav = SuggestAlternatives()
-        self.add_behaviour(suggest_alternatives_behav)
-
-        # Receber informações do parque (ocupação, tarifas, horários)
-        recv_park_info_behav = RecvParkInfo()
-        self.add_behaviour(recv_park_info_behav)
+        self.add_behaviour(RecvEntryRequest())
+        self.add_behaviour(RecvEntryResponse())
+    
+    def mark_vehicle_waiting(self, vehicle_id):
+        self.vehicles_waiting[vehicle_id] = True
+    
+    def unmark_vehicle_waiting(self, vehicle_id):
+        if vehicle_id in self.vehicles_waiting:
+            del self.vehicles_waiting[vehicle_id]
+    
+    def is_vehicle_waiting(self, vehicle_id):
+        return self.vehicles_waiting.get(vehicle_id, False)
+    
+    def register_vehicle(self, vehicle_id, vehicle_jid):
+        self.vehicles[vehicle_id] = vehicle_jid
+    
+    def get_vehicle_jid(self, vehicle_id):
+        return self.vehicles.get(vehicle_id, None)
+    
+    def unregister_vehicle(self, vehicle_id):
+        if vehicle_id in self.vehicles:
+            del self.vehicles[vehicle_id]
