@@ -14,8 +14,10 @@ class RecvRequestsLocation(CyclicBehaviour):
             manager_jid = str(msg.sender)
             current_location = msg_body["current_location"]
             vehicle_id = msg_body["vehicle_id"]
+            tried_parks = set(msg_body.get("tried_parks", []))
 
-            closest_park = self.agent.get_closest_park(current_location)
+
+            closest_park = self.agent.get_closest_park(current_location, tried_parks)
 
             print(f"[Location Manager] Closest park to vehicle {vehicle_id} at location {current_location} is {closest_park}.")
             
@@ -25,7 +27,12 @@ class RecvRequestsLocation(CyclicBehaviour):
                     SendLocationInfo(closest_park, vehicle_id, manager_jid)
                 )
 
- 
+            else:
+                self.agent.add_behaviour(
+                    SendLocationNone(vehicle_id, manager_jid)
+                )
+
+
 class SendLocationInfo(OneShotBehaviour):
     def __init__(self, closest_park, vehicle_id, manager_jid):
         super().__init__()
@@ -45,3 +52,22 @@ class SendLocationInfo(OneShotBehaviour):
 
         await self.send(msg)
         print(f"[Location Manager] Sent closest park info of vehicle {self.vehicle_id} to Central Manager.")
+
+class SendLocationNone(OneShotBehaviour):
+    def __init__(self, vehicle_id, manager_jid):
+        super().__init__()
+        self.vehicle_id = vehicle_id
+        self.manager_jid = manager_jid
+
+    async def run(self):
+        msg = Message(
+            to=self.manager_jid,
+            metadata={"performative": "send_next_park_info"},
+            body=jsonpickle.encode({
+                "closest_park": None,
+                "vehicle_id": self.vehicle_id
+            })
+        )
+
+        await self.send(msg)
+        print(f"[Location Manager] Informed Central Manager that no parks are available for vehicle {self.vehicle_id}.")

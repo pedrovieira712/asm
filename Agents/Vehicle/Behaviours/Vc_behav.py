@@ -38,7 +38,6 @@ class RecvEntryDecision(CyclicBehaviour):
             body = jsonpickle.decode(msg.body)
             print(f"[Vehicle {self.agent.get_plate()}] Entry authorized.")
             if self.agent.is_waiting_at_park():
-                self.agent.set_waiting(False)
                 self.agent.add_behaviour(SendExitWaitingZoneRequest())
             else:
                 self.agent.set_parked(True)
@@ -220,6 +219,7 @@ class VehicleRetryEntryRequestBehaviour(PeriodicBehaviour):
     async def run(self):
         if self.agent.is_waiting_at_park():
             self.agent.add_behaviour(SendEntryRequestBehaviour())
+            self.agent.set_waiting(False)
 
             park_manager_jid = cfg.get_park_jid(self.agent.get_location())
 
@@ -235,4 +235,15 @@ class ReceiveCanExitResponse(CyclicBehaviour):
             print(f"[Vehicle {self.agent.get_plate()}] Received confirmation to exit the park.")
 
             self.agent.set_parked(False)
+
+class ReceiveRedirectDenial(CyclicBehaviour):
+    async def run(self):
+        msg = await self.receive(timeout=1)
+        if msg is None:
+            return
+
+        if (msg.metadata.get("performative") == "redirect_park_response_none" and cfg.identify(msg.sender) == "central_manager"):
+            print(f"[Vehicle {self.agent.get_plate()}] Redirect request denied by central manager, going to wait zone.")
+
+            self.agent.add_behaviour(WaitAtParkBehaviour())
 

@@ -2,6 +2,7 @@ from spade.agent import Agent
 import asyncio
 from datetime import datetime
 from .Behaviours.Behav_Kiosque_Saida import *
+from Config import Config as cfg
 
 class Kiosque_saida(Agent):
     def __init__(self, jid, password, park_jid, tarifa_minuto, hora_fecho, multa_fixa):
@@ -20,29 +21,25 @@ class Kiosque_saida(Agent):
         self.add_behaviour(RecvEntryTimeResponse())
         self.add_behaviour(RecvPaymentConfirmation())
     
-    def calculate_payment(self, entry_time_input):
-        if isinstance(entry_time_input, str):
-            entry_time = datetime.strptime(entry_time_input, "%Y-%m-%d %H:%M:%S")
-        elif isinstance(entry_time_input, datetime):
-            entry_time = entry_time_input
-        else:
-            raise ValueError("entry_time_input deve ser string ou datetime.datetime")
-
+    def calculate_payment(self, entry_time):
         now = datetime.now()
+        real_diff_seconds = (now - entry_time).total_seconds()
 
-        diff = now - entry_time
-        minutos = int(diff.total_seconds() // 60)
+        simulated_seconds = real_diff_seconds * cfg.get_time_factor()
+        minutos_simulados = max(1, int(simulated_seconds // 60))
 
-        valor = minutos * self.tarifa_minuto
+        valor = minutos_simulados * self.tarifa_minuto
 
         hora_fecho_obj = datetime.strptime(self.hora_fecho, "%H:%M").time()
         now_time = now.time()
 
         if now_time > hora_fecho_obj:
             hoje_fecho = now.replace(hour=hora_fecho_obj.hour, minute=hora_fecho_obj.minute, second=0, microsecond=0)
-            excedente_segundos = (now - hoje_fecho).total_seconds()
-            excedente_minutos = int(excedente_segundos // 60)
-
-            valor += self.multa_fixa + (excedente_minutos * self.tarifa_minuto)
+            excedente_real_seconds = (now - hoje_fecho).total_seconds()
+            
+            if excedente_real_seconds > 0:
+                excedente_simulated_seconds = excedente_real_seconds * cfg.get_time_factor()
+                excedente_minutos = max(1, int(excedente_simulated_seconds // 60))
+                valor += self.multa_fixa + (excedente_minutos * self.tarifa_minuto)
 
         return round(valor, 2)

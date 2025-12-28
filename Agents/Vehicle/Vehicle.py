@@ -26,7 +26,7 @@ class Vehicle(Agent):
         self.add_behaviour(VehicleRetryEntryRequestBehaviour(period=10))
         self.add_behaviour(ReceiveCanExitResponse())
         self.add_behaviour(RecvPaymentConfirmation())
-
+        self.add_behaviour(ReceiveRedirectDenial())
     
     def get_vehicle_type(self):
         return self.vehicle_type
@@ -75,6 +75,7 @@ class Vehicle(Agent):
     
     def set_payment_skipping(self, skip):
         self.skip_payment = skip
+
     
 
         

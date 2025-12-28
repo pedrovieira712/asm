@@ -24,14 +24,15 @@ class ReceiveRedirectRequestsBehaviour(CyclicBehaviour):
             self.agent.add_redirect_request(vehicle_id, vehicle_info)
 
             self.agent.add_behaviour(
-                SendLocationRequestBehaviour(vehicle_id, current_location)
+                SendLocationRequestBehaviour(vehicle_id, current_location, self.agent.get_tried_parks(vehicle_id))
             )
 
 class SendLocationRequestBehaviour(OneShotBehaviour):
-    def __init__(self, vehicle_id, current_location):
+    def __init__(self, vehicle_id, current_location, tried_parks):
         super().__init__()
         self.vehicle_id = vehicle_id
         self.current_location = current_location
+        self.tried_parks = tried_parks
 
     async def run(self):
         location_agent_jid = cfg.get_location_manager_jid()
@@ -41,7 +42,8 @@ class SendLocationRequestBehaviour(OneShotBehaviour):
             metadata={"performative": "closer_park_request"},
             body=jsonpickle.encode({
                 "vehicle_id": self.vehicle_id,
-                "current_location": self.current_location
+                "current_location": self.current_location,
+                "tried_parks": list(self.tried_parks),
             })
         )
 
@@ -62,14 +64,41 @@ class ReceiveNextParkInfoBehaviour(CyclicBehaviour):
             closest_park = msg_body.get("closest_park")
             vehicle_id = msg_body.get("vehicle_id")
 
-            print(f"[CentralManager] Received closest park info for vehicle {vehicle_id}: {closest_park}.")
+            if closest_park is not None:
+                print(f"[CentralManager] Received closest park info for vehicle {vehicle_id}: {closest_park}.")
 
-            vehicle_info = self.agent.get_redirect_requests().get(vehicle_id)
+                vehicle_info = self.agent.get_redirect_requests().get(vehicle_id)
 
-            if vehicle_info is not None:
-                self.agent.add_behaviour(
-                    SendAvailabilityRequest(vehicle_id, closest_park, vehicle_info)
-                )
+                if vehicle_info is not None:
+                    self.agent.add_behaviour(
+                        SendAvailabilityRequest(vehicle_id, closest_park, vehicle_info)
+                    )
+            
+            else:
+                self.agent.remove_redirect_request(vehicle_id)
+                self.agent.clear_tried_parks(vehicle_id)
+
+                if vehicle_id is not None:
+                    self.agent.add_behaviour(
+                        SendRedirectNoneBehaviour(vehicle_id)
+                    )
+
+class SendRedirectNoneBehaviour(OneShotBehaviour):
+    def __init__(self, vehicle_id):
+        super().__init__()
+        self.vehicle_id = vehicle_id
+
+    async def run(self):
+        vehicle_jid = cfg.get_vehicle_jid(self.vehicle_id)
+
+        msg = Message(
+            to=vehicle_jid,
+            metadata={"performative": "redirect_park_response_none"},
+        )
+        await self.send(msg)
+        print(f"[CentralManager] Sent redirect denial to vehicle {self.vehicle_id}.")
+
+
 
 class SendAvailabilityRequest(OneShotBehaviour):
     def __init__(self, vehicle_id, park_jid, vehicle_info):
@@ -113,10 +142,12 @@ class ReceiveAvailabilityResponseBehaviour(CyclicBehaviour):
                     SendRedirectResponseBehaviour(vehicle_id, park_location)
                 )
                 self.agent.remove_redirect_request(vehicle_id)
+                self.agent.clear_tried_parks(vehicle_id)
 
             else:
+                self.agent.add_tried_park(vehicle_id, park_location)
                 self.agent.add_behaviour(
-                    SendLocationRequestBehaviour(vehicle_id, park_location)
+                    SendLocationRequestBehaviour(vehicle_id, park_location, self.agent.get_tried_parks(vehicle_id))
                 )
 
 class SendRedirectResponseBehaviour(OneShotBehaviour):

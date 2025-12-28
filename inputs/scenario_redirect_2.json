@@ -1,0 +1,72 @@
+{
+  "parks": [
+    {
+      "id": "P1",
+      "location": [41.157944, -8.629105],
+      "name": "Parque do Porto",
+      "capacity": 1,
+      "max_height": 2.5,
+      "tarifa_minuto": 0.05,
+      "hora_fecho": "23:00",
+      "multa_fixa": 20.0,
+      "spots": [
+        {
+          "spot_id": "L1",
+          "allowed_vehicle_types": ["car", "motorcycle", "truck", "caravan", "bus"],
+          "allowed_user_types": ["normal", "pregnant", "reduced_mobility", "elderly"]
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "location": [37.007599, -8.945587],
+      "name": "Parque de Sagres",
+      "capacity": 1,
+      "max_height": 3.0,
+      "tarifa_minuto": 0.08,
+      "hora_fecho": "22:30",
+      "multa_fixa": 25.0,
+      "spots": [
+        {
+          "spot_id": "L1",
+          "allowed_vehicle_types": ["car", "motorcycle"],
+          "allowed_user_types": ["normal", "pregnant"]
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "location": [40.007599, -8.629105],
+      "name": "Parque Centro",
+      "capacity": 2,
+      "max_height": 2.8,
+      "tarifa_minuto": 0.06,
+      "hora_fecho": "23:30",
+      "multa_fixa": 15.0,
+      "spots": [
+        { "spot_id": "L1", "allowed_vehicle_types": ["car"], "allowed_user_types": ["normal"] }
+      ]
+    }
+  ],
+
+  "vehicles": [
+    {
+      "plate": "AA-11-BB",
+      "vehicle_type": "car",
+      "user_type": "normal",
+      "location": [41.157944, -8.629105],
+      "vehicle_height": 1.8,
+      "redirect": true,
+      "skip_payment": false
+    },
+    {
+      "plate": "CC-22-DD",
+      "vehicle_type": "car",
+      "user_type": "pregnant",
+      "location": [41.157944, -8.629105],
+      "vehicle_height": 1.7,
+      "redirect": true,
+      "skip_payment": true
+    }
+  ]
+}

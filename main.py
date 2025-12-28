@@ -1,16 +1,12 @@
 import asyncio
-from Utils.init import init_agents  
+from Utils.init import init_agents
+import sys  
 
 async def main():
-    print("A iniciar o sistema multi-agente com 2 parques (1 lugar cada) e 2 veículos...\n")
+    if len(sys.argv) > 1:
+        scenario_file = sys.argv[1]
     
-    agents = await init_agents()
-    
-    print("\nTodos os agentes estão a correr!")
-    print("Observa os prints abaixo para ver as interações em tempo real.")
-    print("\n----------------------------------------------------------------\n")
-    print("(Podes parar com Ctrl+C)\n")
-
+    agents = await init_agents(scenario_file)
     try:
         while True:
             await asyncio.sleep(1)
@@ -20,5 +16,9 @@ async def main():
             await agent.stop()
         print("Todos os agentes parados. Adeus!")
 
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\nEncerramento forçado.")

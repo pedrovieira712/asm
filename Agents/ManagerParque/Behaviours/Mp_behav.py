@@ -24,7 +24,7 @@ class ReceiveRedirectVehicleRequestBehaviour(CyclicBehaviour):
 
             print(f"[Park Manager {self.agent.park_id}] Received redirect request for vehicle {vehicle_id}.")
 
-            if vehicle_type is not None or user_type is not None or vehicle_height is not None:
+            if vehicle_type is not None and user_type is not None and vehicle_height is not None:
                 is_available = self.agent.check_availability(vehicle_type, user_type, vehicle_height)
 
                 self.agent.add_behaviour(

@@ -7,10 +7,8 @@ class CentralManager(Agent):
         super().__init__(jid, password)
         self.parking_spots = {}
         self.redirect_requests = {}
+        self.tried_parks = {}
         
-    def print(self, txt):
-        print(f"[CENTRAL_MANAGER] {txt}")
-    
     async def setup(self):
         self.add_behaviour(ReceiveRedirectRequestsBehaviour())
         self.add_behaviour(ReceiveNextParkInfoBehaviour())
@@ -41,4 +39,16 @@ class CentralManager(Agent):
     def remove_redirect_request(self, vehicle_id):
         if vehicle_id in self.redirect_requests:
             del self.redirect_requests[vehicle_id]
+    
+    def add_tried_park(self, vehicle_id, park_location):
+        if vehicle_id not in self.tried_parks:
+            self.tried_parks[vehicle_id] = set()
+        self.tried_parks[vehicle_id].add(park_location)
+    
+    def get_tried_parks(self, vehicle_id):
+        return self.tried_parks.get(vehicle_id, set())
+    
+    def clear_tried_parks(self, vehicle_id):
+        if vehicle_id in self.tried_parks:
+            del self.tried_parks[vehicle_id]
     

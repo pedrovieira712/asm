@@ -3,16 +3,29 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def location_to_str(location):
+    lat, lon = location
+    lat_str = f"{lat:.4f}".rstrip('0').rstrip('.') 
+    lon_str = f"{lon:.4f}".rstrip('0').rstrip('.')
+
+    return f"{lat_str}_{lon_str.replace('-', 'm')}"
+
 
 class Config:    
     DOMAIN = os.getenv("DOMAIN", "localhost")
     PASSWORD = os.getenv("PASSWORD", "password123")
+
+    TIME_ACCELERATION_FACTOR = 60
     
     manager_central_jid = f"central_manager@{DOMAIN}"
     
     @staticmethod
     def get_domain_name():
         return Config.DOMAIN
+    
+    @staticmethod
+    def get_time_factor():
+        return Config.TIME_ACCELERATION_FACTOR
     
     @staticmethod
     def get_password():
@@ -29,7 +42,8 @@ class Config:
 
     @staticmethod
     def get_park_jid(location):
-        return f"park_manager_{location}@{Config.DOMAIN}"
+        loc_str = location_to_str(location)
+        return f"park_manager_{loc_str}@{Config.DOMAIN}"
     
     @staticmethod
     def get_barrier_exit_jid(park_jid):
