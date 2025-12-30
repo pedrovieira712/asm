@@ -22,9 +22,6 @@ class ManagerParque(Agent):
         self.vehicle_types = ["car", "motorcycle", "truck", "caravan", "bus"]
         self.user_types = ["normal", "pregnant", "reduced_mobility", "elderly"]
 
-
-    def print(self, txt):
-        print(f"[MANAGER_PARQUE {self.park_id}] {txt}")
     
     async def setup(self):
         self.add_behaviour(ReceiveRedirectVehicleRequestBehaviour())

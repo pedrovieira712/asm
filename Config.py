@@ -5,8 +5,8 @@ load_dotenv()
 
 def location_to_str(location):
     lat, lon = location
-    lat_str = f"{lat:.4f}".rstrip('0').rstrip('.') 
-    lon_str = f"{lon:.4f}".rstrip('0').rstrip('.')
+    lat_str = f"{lat}".rstrip('0').rstrip('.') 
+    lon_str = f"{lon}".rstrip('0').rstrip('.')
 
     return f"{lat_str}_{lon_str.replace('-', 'm')}"
 

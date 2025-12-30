@@ -1,0 +1,4789 @@
+{
+    "parks": [
+        {
+            "id": "P1",
+            "location": [
+                40.6794819,
+                -8.43660055
+            ],
+            "name": "Parque Aveiro",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.04,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "car",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P2",
+            "location": [
+                37.8250414,
+                -7.8755168
+            ],
+            "name": "Parque Beja",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "bus",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P3",
+            "location": [
+                41.5697147,
+                -8.31112555
+            ],
+            "name": "Parque Braga",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "car",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "truck",
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "car",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "motorcycle",
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P4",
+            "location": [
+                41.5085318,
+                -6.8105256999999995
+            ],
+            "name": "Parque Bragança",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "car",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "truck",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P5",
+            "location": [
+                39.97674835,
+                -7.57845425
+            ],
+            "name": "Parque Castelo Branco",
+            "capacity": 10,
+            "max_height": 1.5,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P6",
+            "location": [
+                40.222075700000005,
+                -8.3204996
+            ],
+            "name": "Parque Coimbra",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P7",
+            "location": [
+                37.2454206,
+                -8.1954249
+            ],
+            "name": "Parque Faro",
+            "capacity": 10,
+            "max_height": 1.5,
+            "tarifa_minuto": 0.05,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle",
+                        "car",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle",
+                        "bus",
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "bus",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P8",
+            "location": [
+                40.7046352,
+                -7.3150937
+            ],
+            "name": "Parque Guarda",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P9",
+            "location": [
+                39.44785845,
+                -31.1965735
+            ],
+            "name": "Parque Ilha Das Flores",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle",
+                        "car",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P10",
+            "location": [
+                38.72120845,
+                -27.21032965
+            ],
+            "name": "Parque Ilha Terceira",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P11",
+            "location": [
+                39.05290265,
+                -28.010182
+            ],
+            "name": "Parque Ilha da Graciosa",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.08,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "bus",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P12",
+            "location": [
+                31.449703799999998,
+                -16.559804550000003
+            ],
+            "name": "Parque Ilha da Madeira",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.04,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "bus",
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P13",
+            "location": [
+                33.0621393,
+                -16.344060650000003
+            ],
+            "name": "Parque Ilha de Porto Santo",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "car",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P14",
+            "location": [
+                36.9726133,
+                -25.0993699
+            ],
+            "name": "Parque Ilha de Santa Maria",
+            "capacity": 10,
+            "max_height": 1.5,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus",
+                        "motorcycle",
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P15",
+            "location": [
+                38.645028100000005,
+                -28.0350516
+            ],
+            "name": "Parque Ilha de São Jorge",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.05,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "motorcycle",
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car",
+                        "truck",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant",
+                        "normal"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P16",
+            "location": [
+                37.807247849999996,
+                -25.4944941
+            ],
+            "name": "Parque Ilha de São Miguel",
+            "capacity": 10,
+            "max_height": 1.5,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "bus",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P17",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "name": "Parque Ilha do Corvo",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P18",
+            "location": [
+                38.579628799999995,
+                -28.71645265
+            ],
+            "name": "Parque Ilha do Faial",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "caravan",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan",
+                        "truck",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P19",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "name": "Parque Ilha do Pico",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "truck",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P20",
+            "location": [
+                39.65065665,
+                -8.81253345
+            ],
+            "name": "Parque Leiria",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "caravan",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P21",
+            "location": [
+                38.995437800000005,
+                -9.1411938
+            ],
+            "name": "Parque Lisboa",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "bus",
+                        "caravan",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "truck",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "truck",
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P22",
+            "location": [
+                39.20758845,
+                -7.6475001
+            ],
+            "name": "Parque Portalegre",
+            "capacity": 10,
+            "max_height": 1.5,
+            "tarifa_minuto": 0.08,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P23",
+            "location": [
+                41.23667575,
+                -8.332321
+            ],
+            "name": "Parque Porto",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.04,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "motorcycle",
+                        "truck",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P24",
+            "location": [
+                39.2851098,
+                -8.405282
+            ],
+            "name": "Parque Santarém",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.05,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P25",
+            "location": [
+                38.2974082,
+                -8.6963358
+            ],
+            "name": "Parque Setúbal",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car",
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "motorcycle",
+                        "bus",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P26",
+            "location": [
+                41.8803459,
+                -8.48191175
+            ],
+            "name": "Parque Viana do Castelo",
+            "capacity": 10,
+            "max_height": 2.5,
+            "tarifa_minuto": 0.07,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P27",
+            "location": [
+                41.522911300000004,
+                -7.64505265
+            ],
+            "name": "Parque Vila Real",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.03,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "bus",
+                        "caravan",
+                        "car",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant",
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "bus",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "bus",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "pregnant",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "car",
+                        "motorcycle",
+                        "caravan",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P28",
+            "location": [
+                40.768648,
+                -7.83201025
+            ],
+            "name": "Parque Viseu",
+            "capacity": 10,
+            "max_height": 3.0,
+            "tarifa_minuto": 0.08,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "motorcycle",
+                        "bus",
+                        "caravan",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "car",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "car",
+                        "motorcycle",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "truck",
+                        "caravan",
+                        "bus",
+                        "motorcycle",
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility",
+                        "pregnant"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "P29",
+            "location": [
+                38.59079075,
+                -7.882622
+            ],
+            "name": "Parque Évora",
+            "capacity": 10,
+            "max_height": 2.0,
+            "tarifa_minuto": 0.06,
+            "hora_fecho": "23:00",
+            "multa_fixa": 20.0,
+            "spots": [
+                {
+                    "spot_id": "L1",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "motorcycle",
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "elderly",
+                        "pregnant",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L2",
+                    "allowed_vehicle_types": [
+                        "car"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility",
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L3",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "car",
+                        "bus",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "elderly",
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L4",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "caravan",
+                        "truck"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility",
+                        "normal",
+                        "elderly",
+                        "pregnant"
+                    ]
+                },
+                {
+                    "spot_id": "L5",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "car",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "elderly"
+                    ]
+                },
+                {
+                    "spot_id": "L6",
+                    "allowed_vehicle_types": [
+                        "bus",
+                        "truck",
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "elderly",
+                        "normal",
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L7",
+                    "allowed_vehicle_types": [
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "pregnant",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L8",
+                    "allowed_vehicle_types": [
+                        "caravan",
+                        "truck",
+                        "motorcycle"
+                    ],
+                    "allowed_user_types": [
+                        "normal"
+                    ]
+                },
+                {
+                    "spot_id": "L9",
+                    "allowed_vehicle_types": [
+                        "bus"
+                    ],
+                    "allowed_user_types": [
+                        "normal",
+                        "reduced_mobility"
+                    ]
+                },
+                {
+                    "spot_id": "L10",
+                    "allowed_vehicle_types": [
+                        "caravan"
+                    ],
+                    "allowed_user_types": [
+                        "reduced_mobility"
+                    ]
+                }
+            ]
+        }
+    ],
+    "vehicles": [
+        {
+            "plate": "TX-38-XA",
+            "vehicle_type": "caravan",
+            "user_type": "normal",
+            "location": [
+                39.44785845,
+                -31.1965735
+            ],
+            "vehicle_height": 1.72,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "JK-94-NP",
+            "vehicle_type": "bus",
+            "user_type": "reduced_mobility",
+            "location": [
+                40.7046352,
+                -7.3150937
+            ],
+            "vehicle_height": 1.87,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "PZ-57-TB",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "vehicle_height": 1.95,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "TP-75-OE",
+            "vehicle_type": "caravan",
+            "user_type": "elderly",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "vehicle_height": 1.74,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "EP-34-IV",
+            "vehicle_type": "bus",
+            "user_type": "normal",
+            "location": [
+                39.2851098,
+                -8.405282
+            ],
+            "vehicle_height": 1.53,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "ZM-45-LY",
+            "vehicle_type": "bus",
+            "user_type": "pregnant",
+            "location": [
+                37.8250414,
+                -7.8755168
+            ],
+            "vehicle_height": 1.6,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "ST-81-OG",
+            "vehicle_type": "truck",
+            "user_type": "elderly",
+            "location": [
+                37.8250414,
+                -7.8755168
+            ],
+            "vehicle_height": 1.65,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "YD-20-EQ",
+            "vehicle_type": "caravan",
+            "user_type": "pregnant",
+            "location": [
+                38.59079075,
+                -7.882622
+            ],
+            "vehicle_height": 1.81,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "LP-95-QK",
+            "vehicle_type": "caravan",
+            "user_type": "normal",
+            "location": [
+                41.522911300000004,
+                -7.64505265
+            ],
+            "vehicle_height": 1.53,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "VX-16-SD",
+            "vehicle_type": "motorcycle",
+            "user_type": "reduced_mobility",
+            "location": [
+                41.5085318,
+                -6.8105256999999995
+            ],
+            "vehicle_height": 1.62,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "JT-76-NE",
+            "vehicle_type": "motorcycle",
+            "user_type": "reduced_mobility",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "vehicle_height": 1.5,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "KB-24-GH",
+            "vehicle_type": "motorcycle",
+            "user_type": "elderly",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "vehicle_height": 1.69,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "KE-85-PV",
+            "vehicle_type": "caravan",
+            "user_type": "pregnant",
+            "location": [
+                38.4717507,
+                -28.285045500000003
+            ],
+            "vehicle_height": 1.8,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "OQ-77-SH",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                38.59079075,
+                -7.882622
+            ],
+            "vehicle_height": 1.57,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "KA-97-JV",
+            "vehicle_type": "truck",
+            "user_type": "normal",
+            "location": [
+                37.807247849999996,
+                -25.4944941
+            ],
+            "vehicle_height": 1.59,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "UZ-41-PJ",
+            "vehicle_type": "caravan",
+            "user_type": "pregnant",
+            "location": [
+                39.2851098,
+                -8.405282
+            ],
+            "vehicle_height": 1.85,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "YB-45-FQ",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                38.2974082,
+                -8.6963358
+            ],
+            "vehicle_height": 1.9,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "JI-80-KL",
+            "vehicle_type": "bus",
+            "user_type": "normal",
+            "location": [
+                40.768648,
+                -7.83201025
+            ],
+            "vehicle_height": 1.92,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "US-16-CZ",
+            "vehicle_type": "caravan",
+            "user_type": "normal",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.53,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "VT-32-PR",
+            "vehicle_type": "car",
+            "user_type": "normal",
+            "location": [
+                40.768648,
+                -7.83201025
+            ],
+            "vehicle_height": 1.74,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "SG-71-ND",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                39.20758845,
+                -7.6475001
+            ],
+            "vehicle_height": 1.67,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "MH-24-PL",
+            "vehicle_type": "truck",
+            "user_type": "pregnant",
+            "location": [
+                39.2851098,
+                -8.405282
+            ],
+            "vehicle_height": 1.44,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "BD-75-QT",
+            "vehicle_type": "truck",
+            "user_type": "normal",
+            "location": [
+                37.2454206,
+                -8.1954249
+            ],
+            "vehicle_height": 1.99,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "NK-68-DS",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                39.65065665,
+                -8.81253345
+            ],
+            "vehicle_height": 1.97,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "GD-14-TF",
+            "vehicle_type": "motorcycle",
+            "user_type": "normal",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.51,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "GI-74-FJ",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                40.7046352,
+                -7.3150937
+            ],
+            "vehicle_height": 1.42,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "WH-57-JK",
+            "vehicle_type": "truck",
+            "user_type": "reduced_mobility",
+            "location": [
+                39.05290265,
+                -28.010182
+            ],
+            "vehicle_height": 1.64,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "FL-80-SK",
+            "vehicle_type": "caravan",
+            "user_type": "reduced_mobility",
+            "location": [
+                37.807247849999996,
+                -25.4944941
+            ],
+            "vehicle_height": 1.74,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "QO-93-NK",
+            "vehicle_type": "motorcycle",
+            "user_type": "pregnant",
+            "location": [
+                37.2454206,
+                -8.1954249
+            ],
+            "vehicle_height": 1.81,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "YL-15-SQ",
+            "vehicle_type": "caravan",
+            "user_type": "reduced_mobility",
+            "location": [
+                39.05290265,
+                -28.010182
+            ],
+            "vehicle_height": 1.53,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "MS-51-YK",
+            "vehicle_type": "truck",
+            "user_type": "pregnant",
+            "location": [
+                41.8803459,
+                -8.48191175
+            ],
+            "vehicle_height": 1.79,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "MX-27-HU",
+            "vehicle_type": "motorcycle",
+            "user_type": "elderly",
+            "location": [
+                38.72120845,
+                -27.21032965
+            ],
+            "vehicle_height": 1.91,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "IG-23-QR",
+            "vehicle_type": "caravan",
+            "user_type": "normal",
+            "location": [
+                38.579628799999995,
+                -28.71645265
+            ],
+            "vehicle_height": 1.87,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "JT-65-WY",
+            "vehicle_type": "truck",
+            "user_type": "pregnant",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.93,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "AL-14-YD",
+            "vehicle_type": "caravan",
+            "user_type": "normal",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.54,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "YD-33-AI",
+            "vehicle_type": "car",
+            "user_type": "pregnant",
+            "location": [
+                41.5697147,
+                -8.31112555
+            ],
+            "vehicle_height": 1.59,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "BL-31-ZW",
+            "vehicle_type": "truck",
+            "user_type": "elderly",
+            "location": [
+                40.222075700000005,
+                -8.3204996
+            ],
+            "vehicle_height": 1.6,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "XI-86-YD",
+            "vehicle_type": "truck",
+            "user_type": "elderly",
+            "location": [
+                40.768648,
+                -7.83201025
+            ],
+            "vehicle_height": 1.93,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "AR-86-BG",
+            "vehicle_type": "motorcycle",
+            "user_type": "pregnant",
+            "location": [
+                31.449703799999998,
+                -16.559804550000003
+            ],
+            "vehicle_height": 1.49,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "LZ-90-MU",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                40.6794819,
+                -8.43660055
+            ],
+            "vehicle_height": 1.61,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "IO-70-LS",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                38.579628799999995,
+                -28.71645265
+            ],
+            "vehicle_height": 1.45,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "VG-91-NJ",
+            "vehicle_type": "car",
+            "user_type": "elderly",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.77,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "BE-11-CA",
+            "vehicle_type": "motorcycle",
+            "user_type": "pregnant",
+            "location": [
+                39.6977062,
+                -31.1055015
+            ],
+            "vehicle_height": 1.54,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "MT-91-ZH",
+            "vehicle_type": "truck",
+            "user_type": "reduced_mobility",
+            "location": [
+                41.5085318,
+                -6.8105256999999995
+            ],
+            "vehicle_height": 1.75,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "VB-90-HA",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                39.65065665,
+                -8.81253345
+            ],
+            "vehicle_height": 1.73,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "VC-33-KM",
+            "vehicle_type": "truck",
+            "user_type": "normal",
+            "location": [
+                39.44785845,
+                -31.1965735
+            ],
+            "vehicle_height": 1.73,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "QG-50-LM",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                40.6794819,
+                -8.43660055
+            ],
+            "vehicle_height": 1.76,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "TG-97-MB",
+            "vehicle_type": "motorcycle",
+            "user_type": "reduced_mobility",
+            "location": [
+                40.6794819,
+                -8.43660055
+            ],
+            "vehicle_height": 1.95,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "QO-28-IB",
+            "vehicle_type": "bus",
+            "user_type": "pregnant",
+            "location": [
+                38.645028100000005,
+                -28.0350516
+            ],
+            "vehicle_height": 1.97,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "JO-63-GN",
+            "vehicle_type": "truck",
+            "user_type": "elderly",
+            "location": [
+                39.20758845,
+                -7.6475001
+            ],
+            "vehicle_height": 1.49,
+            "redirect": false,
+            "skip_payment": false
+        },
+        {
+            "plate": "LY-94-FO",
+            "vehicle_type": "truck",
+            "user_type": "normal",
+            "location": [
+                40.6794819,
+                -8.43660055
+            ],
+            "vehicle_height": 1.45,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "QT-98-AN",
+            "vehicle_type": "caravan",
+            "user_type": "elderly",
+            "location": [
+                41.5085318,
+                -6.8105256999999995
+            ],
+            "vehicle_height": 1.88,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "MS-98-NR",
+            "vehicle_type": "car",
+            "user_type": "normal",
+            "location": [
+                37.2454206,
+                -8.1954249
+            ],
+            "vehicle_height": 1.75,
+            "redirect": false,
+            "skip_payment": true
+        },
+        {
+            "plate": "XW-30-XY",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                37.807247849999996,
+                -25.4944941
+            ],
+            "vehicle_height": 1.9,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "QD-72-VZ",
+            "vehicle_type": "car",
+            "user_type": "reduced_mobility",
+            "location": [
+                39.20758845,
+                -7.6475001
+            ],
+            "vehicle_height": 1.72,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "DQ-13-UX",
+            "vehicle_type": "bus",
+            "user_type": "elderly",
+            "location": [
+                37.8250414,
+                -7.8755168
+            ],
+            "vehicle_height": 1.47,
+            "redirect": true,
+            "skip_payment": false
+        },
+        {
+            "plate": "LM-90-NF",
+            "vehicle_type": "bus",
+            "user_type": "reduced_mobility",
+            "location": [
+                41.5697147,
+                -8.31112555
+            ],
+            "vehicle_height": 1.6,
+            "redirect": true,
+            "skip_payment": true
+        },
+        {
+            "plate": "CI-52-AT",
+            "vehicle_type": "bus",
+            "user_type": "pregnant",
+            "location": [
+                38.72120845,
+                -27.21032965
+            ],
+            "vehicle_height": 1.62,
+            "redirect": false,
+            "skip_payment": true
+        }
+    ]
+}

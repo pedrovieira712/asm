@@ -39,7 +39,7 @@ async def init_agents(scenario_file="scenario.json"):
             jid=manager_jid,
             password=PASSWORD,
             park_id=park_id,
-            capacity=park_config.get("capacity", 1),
+            capacity=park_config.get("capacity", 10),
             max_height=park_config.get("max_height", 3.0),
             location=loc
         )
@@ -94,7 +94,7 @@ async def init_agents(scenario_file="scenario.json"):
             user_type=veh_config["user_type"],
             location=tuple(veh_config["location"]),
             redirect=veh_config.get("redirect", True),
-            vehicle_height=veh_config.get("vehicle_height", 1.8),
+            vehicle_height=veh_config.get("vehicle_height", 2.9),
             plate=veh_config["plate"],
             skip_payment=veh_config.get("skip_payment", False)
         )

@@ -10,9 +10,6 @@ class Kiosque_Entrada(Agent):
         self.vehicles_waiting = {}
         self.vehicles = {}  
         
-    def print(self, txt):
-        print(f"[KIOSQUE_ENTRADA {self.park_jid}] {txt}")
-        
     async def setup(self):
         self.add_behaviour(RecvEntryRequest())
         self.add_behaviour(RecvEntryResponse())

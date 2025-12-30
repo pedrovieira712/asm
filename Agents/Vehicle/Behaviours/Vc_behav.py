@@ -40,6 +40,7 @@ class RecvEntryDecision(CyclicBehaviour):
             if self.agent.is_waiting_at_park():
                 self.agent.add_behaviour(SendExitWaitingZoneRequest())
             else:
+                self.agent.reset_entry_retries()
                 self.agent.set_parked(True)
                 await asyncio.sleep(5)
                 if not self.agent.is_skipping_payment_process():
@@ -73,6 +74,7 @@ class WaitAtParkBehaviour(OneShotBehaviour):
 
         await self.send(msg)
         self.agent.set_waiting(True)
+        self.agent.increment_entry_retries()
         print(f"[Vehicle {self.agent.get_plate()}] Wait notification sent to wait zone of park {park_manager_jid}.")
 
 class SendExitWaitingZoneRequest(OneShotBehaviour):
@@ -217,13 +219,23 @@ class RecvPaymentConfirmation(CyclicBehaviour):
 
 class VehicleRetryEntryRequestBehaviour(PeriodicBehaviour):
     async def run(self):
-        if self.agent.is_waiting_at_park():
+        if self.agent.is_waiting_at_park() and self.agent.get_entry_retries() <= 1:
+            self.agent.add_behaviour(SendExitWaitingZoneRequest())
             self.agent.add_behaviour(SendEntryRequestBehaviour())
             self.agent.set_waiting(False)
 
             park_manager_jid = cfg.get_park_jid(self.agent.get_location())
 
             print(f"[Vehicle {self.agent.get_plate()}] Retrying entry request as vehicle is waiting at park {park_manager_jid}.")
+        
+        elif self.agent.is_waiting_at_park() and self.agent.get_entry_retries() > 1:
+            self.agent.add_behaviour(SendExitWaitingZoneRequest())
+            self.agent.add_behaviour(SendRedirectRequest())
+            self.agent.set_waiting(False)
+
+            print(f"[Vehicle {self.agent.get_plate()}] Maximum entry retries reached, sending redirect request.")
+
+
 
 class ReceiveCanExitResponse(CyclicBehaviour):
     async def run(self):

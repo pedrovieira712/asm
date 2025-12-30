@@ -16,6 +16,7 @@ class Vehicle(Agent):
         self.is_waiting = False
         self.is_parked = False
         self.skip_payment = skip_payment
+        self.entry_retries = 0
     
     async def setup(self):
         self.add_behaviour(SendEntryRequestBehaviour())
@@ -75,6 +76,15 @@ class Vehicle(Agent):
     
     def set_payment_skipping(self, skip):
         self.skip_payment = skip
+    
+    def get_entry_retries(self):
+        return self.entry_retries
+    
+    def increment_entry_retries(self):
+        self.entry_retries += 1
+    
+    def reset_entry_retries(self):
+        self.entry_retries = 0
 
     
 
