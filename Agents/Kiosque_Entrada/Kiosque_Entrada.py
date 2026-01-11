@@ -1,11 +1,17 @@
 from spade.agent import Agent
 import asyncio
 from datetime import datetime
+from Utils.agent_logger import create_kiosk_entry_logger
+from Config import Config as cfg
 from .Behaviours.Behav_Kiosque_Entrada import *
 
 class Kiosque_Entrada(Agent):    
     def __init__(self, jid, password, park_jid):
         super().__init__(jid, password)
+        
+        park_id = cfg.get_jid_name(park_jid).replace("park_manager_", "")
+        self.logger = create_kiosk_entry_logger(park_id)
+        
         self.park_jid = park_jid
         self.vehicles_waiting = {}
         self.vehicles = {}  

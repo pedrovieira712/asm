@@ -1,9 +1,12 @@
 from spade.agent import Agent
+from Utils.agent_logger import create_park_manager_logger
 from .Behaviours.Mp_behav import *
 
 class ManagerParque(Agent):
     def __init__(self, jid, password, park_id, capacity, max_height, location):
         super().__init__(jid, password)
+
+        self.logger = create_park_manager_logger(park_id)
 
         self.park_id = park_id
         self.capacity = capacity

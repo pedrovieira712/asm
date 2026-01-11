@@ -14,7 +14,7 @@ class RecvPaymentRequest(CyclicBehaviour):
         if msg.metadata.get("performative") == "payment_request" and cfg.identify(msg.sender) == "vehicle":
             msg_body = jsonpickle.decode(msg.body)
             vehicle_id = msg_body.get("vehicle_id")
-            print(f"[Exit Kiosk] Payment request received from vehicle {vehicle_id} in park {self.agent.park_jid}.")
+            self.agent.logger.info(f"Payment request received from vehicle {vehicle_id}")
             
             self.agent.vehicle_waiting_payment = str(msg.sender)
             self.agent.current_vehicle_id = vehicle_id
@@ -61,7 +61,7 @@ class SendPaymentInfo(OneShotBehaviour):
             body=jsonpickle.encode({"amount": self.value})
         )
         await self.send(msg)
-        print(f"[Exit Kiosk] Sent payment amount {self.value} to vehicle {self.vehicle_jid} parked at {self.agent.park_jid}.")
+        self.agent.logger.info(f"Sent payment amount {self.value}€ to vehicle {cfg.get_jid_name(self.vehicle_jid).replace('vehicle_', '').upper()}")
        
 class RecvPaymentConfirmation(CyclicBehaviour):
     async def run(self):
@@ -72,7 +72,7 @@ class RecvPaymentConfirmation(CyclicBehaviour):
         if msg.metadata.get("performative") == "payment_done" and cfg.identify(msg.sender) == "vehicle":
             msg_body = jsonpickle.decode(msg.body)
             vehicle_id = msg_body.get("vehicle_id")
-            print(f"[Exit Kiosk] Payment received from vehicle {vehicle_id} in park {self.agent.park_jid}.")
+            self.agent.logger.success(f"Payment received from vehicle {vehicle_id}")
             
             
             self.agent.add_behaviour(
@@ -92,4 +92,4 @@ class NotifyManagerPaymentDone(OneShotBehaviour):
             body=jsonpickle.encode({"vehicle_id": self.vehicle_id})
         )
         await self.send(msg)
-        print(f"[Exit Kiosk] Notified park manager {self.manager_jid} of payment confirmation for vehicle {self.vehicle_id} in park {self.agent.park_jid}.")
+        self.agent.logger.info(f"Notified park manager of payment confirmation for vehicle {self.vehicle_id}")

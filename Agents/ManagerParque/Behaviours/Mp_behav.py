@@ -22,7 +22,7 @@ class ReceiveRedirectVehicleRequestBehaviour(CyclicBehaviour):
             user_type = vehicle_info.get("user_type")
             vehicle_height = vehicle_info.get("vehicle_height")
 
-            print(f"[Park Manager {self.agent.park_id}] Received redirect request for vehicle {vehicle_id}.")
+            self.agent.logger.info(f"Received redirect request for vehicle {vehicle_id}")
 
             if vehicle_type is not None and user_type is not None and vehicle_height is not None:
                 is_available = self.agent.check_availability(vehicle_type, user_type, vehicle_height)
@@ -52,7 +52,7 @@ class SendRedirectVehicleResponseBehaviour(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Sent redirect response for vehicle {self.vehicle_id}: {'available' if self.is_available else 'not available'}.")
+        self.agent.logger.info(f"Sent redirect response for vehicle {self.vehicle_id}: {'available' if self.is_available else 'not available'}")
 
 class ReceiveEntryRequestBehaviour(CyclicBehaviour):
     async def run(self):
@@ -74,7 +74,7 @@ class ReceiveEntryRequestBehaviour(CyclicBehaviour):
 
             is_available = self.agent.check_availability(vehicle_type, user_type, vehicle_height)
 
-            print(f"[Park Manager {self.agent.park_id}] Received entry request for vehicle {vehicle_id}.")
+            self.agent.logger.info(f"Received entry request for vehicle {vehicle_id}")
 
             if is_available:
                 free_spot = self.agent.get_free_spot(vehicle_type, user_type)
@@ -123,7 +123,7 @@ class SendSensorUpdateBehaviour(OneShotBehaviour):
             })
         )
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Sensor {self.sensor_jid} notified to mark spot {self.spot_id} for vehicle {self.vehicle_id}.")
+        self.agent.logger.info(f"Sensor notified to mark spot {self.spot_id} for vehicle {self.vehicle_id}")
 
 class SendKioskEntryConfirmationBehaviour(OneShotBehaviour):
     def __init__(self, vehicle_id, spot_id):
@@ -142,7 +142,7 @@ class SendKioskEntryConfirmationBehaviour(OneShotBehaviour):
             })
         )
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Entry authorized for vehicle {self.vehicle_id} at spot {self.spot_id}.")
+        self.agent.logger.success(f"Entry authorized for vehicle {self.vehicle_id} at spot {self.spot_id}")
 
 class SendKioskEntryDenialBehaviour(OneShotBehaviour):
     def __init__(self, vehicle_id):
@@ -160,7 +160,7 @@ class SendKioskEntryDenialBehaviour(OneShotBehaviour):
             })
         )
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Entry denied for vehicle {self.vehicle_id}.")
+        self.agent.logger.warning(f"Entry denied for vehicle {self.vehicle_id}")
 
 class ReceivePaymentConfirmationBehaviour(CyclicBehaviour):
     async def run(self):
@@ -176,7 +176,7 @@ class ReceivePaymentConfirmationBehaviour(CyclicBehaviour):
             vehicle_id = msg_body.get("vehicle_id")
             self.agent.record_payment(vehicle_id, True)
 
-            print(f"[Park Manager {self.agent.park_id}] Payment confirmed for vehicle {vehicle_id}.")
+            self.agent.logger.success(f"Payment confirmed for vehicle {vehicle_id}")
             
             self.agent.add_behaviour(
                 SendPaymentConfirmationVehicle(vehicle_id)
@@ -195,7 +195,7 @@ class SendPaymentConfirmationVehicle(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Payment confirmation sent to vehicle {self.vehicle_id}.")
+        self.agent.logger.info(f"Payment confirmation sent to vehicle {self.vehicle_id}")
 
 class ReceivePaymentVerificationBehaviour(CyclicBehaviour):
     async def run(self):
@@ -212,7 +212,7 @@ class ReceivePaymentVerificationBehaviour(CyclicBehaviour):
             
             has_paid = self.agent.has_paid(vehicle_id)
 
-            print(f"[Park Manager {self.agent.park_id}] Payment verification for vehicle {vehicle_id}.")
+            self.agent.logger.info(f"Payment verification for vehicle {vehicle_id}")
 
             if has_paid:
                 self.agent.add_behaviour(
@@ -248,7 +248,7 @@ class SendPaymentWarning(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Payment warning sent to vehicle {self.vehicle_id}.")
+        self.agent.logger.warning(f"Payment warning sent to vehicle {self.vehicle_id}")
 
 class SendBarrierExitOpen(OneShotBehaviour):
     def __init__(self, vehicle_id):
@@ -269,7 +269,7 @@ class SendBarrierExitOpen(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Payment confirmed for vehicle {self.vehicle_id}, barrier exit opened.")
+        self.agent.logger.success(f"Payment confirmed for vehicle {self.vehicle_id}, barrier exit opened")
 
 class SendVehicleCanExit(OneShotBehaviour):
     def __init__(self, vehicle_id):
@@ -285,7 +285,7 @@ class SendVehicleCanExit(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Vehicle {self.vehicle_id} notified it can exit.")
+        self.agent.logger.info(f"Vehicle {self.vehicle_id} notified it can exit")
 
 class ReceiveEntrytimeRequestBehaviour(CyclicBehaviour):
     async def run(self):
@@ -301,7 +301,7 @@ class ReceiveEntrytimeRequestBehaviour(CyclicBehaviour):
             vehicle_id = msg_body.get("vehicle_id")
             entry_time = self.agent.get_entry_time(vehicle_id)
 
-            print(f"[Park Manager {self.agent.park_id}] Entry time requested for vehicle {vehicle_id}.")
+            self.agent.logger.info(f"Entry time requested for vehicle {vehicle_id}")
 
             self.agent.add_behaviour(
                 SendEntrytimeResponseBehaviour(vehicle_id, entry_time)
@@ -326,4 +326,4 @@ class SendEntrytimeResponseBehaviour(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Park Manager {self.agent.park_id}] Entry time response sent for vehicle {self.vehicle_id}.")
+        self.agent.logger.success(f"Entry time response sent for vehicle {self.vehicle_id}")

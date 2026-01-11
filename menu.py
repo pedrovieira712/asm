@@ -140,7 +140,7 @@ async def main_menu():
                 input("Pressione ENTER para continuar...")
         except KeyboardInterrupt:
             clear_screen()
-            print("\n Até breve!")
+            print("\nAté breve!")
             sys.exit(0)
 
 if __name__ == "__main__":

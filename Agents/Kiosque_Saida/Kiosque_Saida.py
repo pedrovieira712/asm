@@ -1,12 +1,17 @@
 from spade.agent import Agent
 import asyncio
 from datetime import datetime
+from Utils.agent_logger import create_kiosk_exit_logger
 from .Behaviours.Behav_Kiosque_Saida import *
 from Config import Config as cfg
 
 class Kiosque_saida(Agent):
     def __init__(self, jid, password, park_jid, tarifa_minuto, hora_fecho, multa_fixa):
         super().__init__(jid, password)
+        
+        park_id = cfg.get_jid_name(park_jid).replace("park_manager_", "")
+        self.logger = create_kiosk_exit_logger(park_id)
+        
         self.park_jid = park_jid
         self.tarifa_minuto = tarifa_minuto
         self.hora_fecho = hora_fecho
