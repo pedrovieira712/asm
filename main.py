@@ -56,7 +56,26 @@ def show_config():
     print("-" * 40)
     input("\nPressione ENTER para voltar...")
 
+_active_agents = []
+
+async def cleanup_all_agents():
+    global _active_agents
+    if _active_agents:
+        print("\nA parar agentes...")
+        for agent in _active_agents:
+            try:
+                await agent.stop()
+            except Exception:
+                pass
+        _active_agents.clear()
+    
+    tasks = [task for task in asyncio.all_tasks() if task is not asyncio.current_task()]
+    for task in tasks:
+        task.cancel()
+    await asyncio.gather(*tasks, return_exceptions=True)
+
 async def run_scenario():
+    global _active_agents
     clear_screen()
     show_header()
     print(" EXECUTAR CENÁRIO:")
@@ -82,17 +101,16 @@ async def run_scenario():
             
             scenario_path = os.path.join("inputs", scenario_file)
             
-            # Carregar cenário para obter placas esperadas
             scenario = load_scenario(scenario_path)
             expected_plates = set(v["plate"] for v in scenario.get("vehicles", []))
             
-            # Configurar interceptor se for scenario_test_all
             interceptor = None
             if "scenario_test_all" in scenario_file:
                 interceptor = PrintInterceptor(expected_plates)
                 sys.stdout = interceptor
             
             agents = await init_agents(scenario_path)
+            _active_agents = agents 
             start_time = time.time()
             timeout_seconds = 45
             
@@ -100,13 +118,11 @@ async def run_scenario():
                 while True:
                     await asyncio.sleep(1)
                     
-                    # Verificar se todos os veículos confirmaram (com interceptor)
                     if interceptor and interceptor.confirmed_plates >= expected_plates:
                         sys.stdout = interceptor.original_stdout
                         print("\nCenário concluído com sucesso!")
                         break
                     
-                    # Timeout para cenários sem interceptor
                     if not interceptor and (time.time() - start_time) > timeout_seconds:
                         print("\nCenário concluído com sucesso!")
                         break
@@ -114,15 +130,21 @@ async def run_scenario():
             except KeyboardInterrupt:
                 sys.stdout = interceptor.original_stdout if interceptor else sys.stdout
                 print("\n\n  A parar agentes...")
-            
-            # Parar todos os agentes
-            for agent in agents:
-                await agent.stop()
-            print("Agentes parados com sucesso!")
+            finally:
+                for agent in agents:
+                    try:
+                        await agent.stop()
+                    except Exception:
+                        pass
+                _active_agents.clear()
+                print("Agentes parados com sucesso!")
         else:
             print("Opção inválida!")
     except ValueError:
         print("Por favor, insira um número!")
+    except KeyboardInterrupt:
+        print("\n\nOperação cancelada.")
+        pass
     
     input("Pressione ENTER para voltar...")
 
@@ -144,13 +166,15 @@ async def main_menu():
             elif choice == "0":
                 clear_screen()
                 print("Até breve!")
+                await cleanup_all_agents()
                 sys.exit(0)
             else:
                 print(" Opção inválida!")
                 input("Pressione ENTER para continuar...")
         except KeyboardInterrupt:
             clear_screen()
-            print("Até breve!")
+            print("\nAté breve!")
+            await cleanup_all_agents()
             sys.exit(0)
 
 async def main_tests(scenario_file):
@@ -242,4 +266,8 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n\nPrograma terminado.")
+        sys.exit(0)
