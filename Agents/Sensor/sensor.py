@@ -11,9 +11,6 @@ class Sensor(Agent):
         self.is_free = True
         self.vehicle_id = None
 
-    def print(self, txt):
-        print(f"[SENSOR {self.tipo_sensor}] {txt}")
-
     async def setup(self):
         self.add_behaviour(RecvExitConfirmed())
         self.add_behaviour(RecvMarkSpot())
