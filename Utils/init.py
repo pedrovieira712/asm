@@ -2,13 +2,13 @@ import asyncio
 import json
 from Config import Config as cfg
 
-from Agents.ManagerParque.ManagerParque import ManagerParque
+from Agents.ManagerParque.managerParque import ManagerParque
 from Agents.Barreira_Saida.Barreira_saida import BarreiraSaida
 from Agents.Kiosque_Saida.Kiosque_Saida import Kiosque_saida
 from Agents.Kiosque_Entrada.Kiosque_Entrada import Kiosque_Entrada
 from Agents.CentralManager.CentralManager import CentralManager
 from Agents.Location.Location import Location
-from Agents.Sensor.Sensor import Sensor
+from Agents.Sensor.sensor import Sensor
 from Agents.Vehicle.Vehicle import Vehicle
 from Agents.ZonadeEspera.zonadeespera import ZonadeEspera
 

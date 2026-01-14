@@ -15,7 +15,7 @@ class RecvEntryRequest(CyclicBehaviour):
             vehicle_id = msg_body.get("vehicle_id")
             vehicle_info = msg_body.get("vehicle_info")
             
-            print(f"[Entry Kiosk] Entry request from vehicle: {vehicle_id} at park {self.agent.park_jid}.")
+            self.agent.logger.info(f"Entry request from vehicle {vehicle_id}")
 
             self.agent.mark_vehicle_waiting(vehicle_id)
             self.agent.register_vehicle(vehicle_id, str(msg.sender))
@@ -41,7 +41,7 @@ class SendEntryRequest(OneShotBehaviour):
             })
         )
         await self.send(msg)
-        print(f"[Entry Kiosk] Entry request sent to park {self.agent.park_jid} from vehicle {self.vehicle_id}.")
+        self.agent.logger.info(f"Entry request sent to park manager for vehicle {self.vehicle_id}")
 
 class RecvEntryResponse(CyclicBehaviour):
     async def run(self):
@@ -58,11 +58,11 @@ class RecvEntryResponse(CyclicBehaviour):
                 self.agent.unmark_vehicle_waiting(vehicle_id)
                 
                 if state:
-                    print(f"[Entry Kiosk] Vehicle {vehicle_id} authorized to enter in park {self.agent.park_jid}.")
+                    self.agent.logger.success(f"Vehicle {vehicle_id} authorized to enter")
                     self.agent.add_behaviour(SendEntryAuthorization(vehicle_id))
 
                 else:
-                    print(f"[Entry Kiosk] Vehicle {vehicle_id} not authorized to enter in park {self.agent.park_jid}.")
+                    self.agent.logger.warning(f"Vehicle {vehicle_id} not authorized to enter")
                     self.agent.add_behaviour(SendEntryDenial(vehicle_id))
 
 class SendEntryAuthorization(OneShotBehaviour):
@@ -79,7 +79,7 @@ class SendEntryAuthorization(OneShotBehaviour):
         )
         await self.send(msg)
         self.agent.unregister_vehicle(self.vehicle_id)
-        print(f"[Entry Kiosk] Entry authorization sent to vehicle {self.vehicle_id} in park {self.agent.park_jid}.")
+        self.agent.logger.success(f"Entry authorization sent to vehicle {self.vehicle_id}")
 
 
 class SendEntryDenial(OneShotBehaviour):
@@ -96,5 +96,5 @@ class SendEntryDenial(OneShotBehaviour):
         )
         await self.send(msg)
         self.agent.unregister_vehicle(self.vehicle_id)
-        print(f"[Entry Kiosk] Entry denial sent to vehicle {self.vehicle_id} in park {self.agent.park_jid}.")
+        self.agent.logger.info(f"Entry denial sent to vehicle {self.vehicle_id}")
 

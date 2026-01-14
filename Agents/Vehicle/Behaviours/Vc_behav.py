@@ -24,7 +24,7 @@ class SendEntryRequestBehaviour(OneShotBehaviour):
             )
 
             await self.send(msg)
-            print(f"[Vehicle {self.agent.get_plate()}] Entry request sent to kiosk entry at park {park_manager_jid}.")
+            self.agent.logger.info(f"Entry request sent to kiosk entry")
 
 class RecvEntryDecision(CyclicBehaviour):
     async def run(self):
@@ -36,7 +36,7 @@ class RecvEntryDecision(CyclicBehaviour):
 
         if performative == "entry_authorized" and cfg.identify(msg.sender) == "kiosk_entry":
             body = jsonpickle.decode(msg.body)
-            print(f"[Vehicle {self.agent.get_plate()}] Entry authorized.")
+            self.agent.logger.success("Entry authorized")
             if self.agent.is_waiting_at_park():
                 self.agent.add_behaviour(SendExitWaitingZoneRequest())
             else:
@@ -51,7 +51,7 @@ class RecvEntryDecision(CyclicBehaviour):
 
         elif performative == "entry_denied" and cfg.identify(msg.sender) == "kiosk_entry":
             body = jsonpickle.decode(msg.body)
-            print(f"[Vehicle {self.agent.get_plate()}] Entry denied.")
+            self.agent.logger.warning("Entry denied")
 
             if self.agent.prefers_redirect:
                 self.agent.add_behaviour(SendRedirectRequest())
@@ -75,7 +75,7 @@ class WaitAtParkBehaviour(OneShotBehaviour):
         await self.send(msg)
         self.agent.set_waiting(True)
         self.agent.increment_entry_retries()
-        print(f"[Vehicle {self.agent.get_plate()}] Wait notification sent to wait zone of park {park_manager_jid}.")
+        self.agent.logger.warning("Waiting at park, added to wait zone")
 
 class SendExitWaitingZoneRequest(OneShotBehaviour):
     async def run(self):
@@ -91,7 +91,7 @@ class SendExitWaitingZoneRequest(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Vehicle {self.agent.get_plate()}] Exit wait notification sent to wait zone of park {park_manager_jid}.")
+        self.agent.logger.info("Exiting wait zone")
 
 class SendRedirectRequest(OneShotBehaviour):
     async def run(self):
@@ -112,7 +112,7 @@ class SendRedirectRequest(OneShotBehaviour):
         )
 
         await self.send(msg)
-        print(f"[Vehicle {self.agent.get_plate()}] Redirect request sent to central manager.")
+        self.agent.logger.warning("Redirect request sent to central manager")
 
 
 class RecvRedirectResponse(CyclicBehaviour):
@@ -126,7 +126,7 @@ class RecvRedirectResponse(CyclicBehaviour):
 
             next_location = msg_body.get("next_location")
 
-            print(f"[Vehicle {self.agent.get_plate()}] Redirected to park at location {next_location}.")
+            self.agent.logger.success(f"Redirected to park at location {next_location}")
 
             self.agent.set_location(next_location)
             self.agent.add_behaviour(SendEntryRequestBehaviour())
@@ -146,7 +146,7 @@ class SendPaymentRequest(OneShotBehaviour):
             )
 
             await self.send(msg)
-            print(f"[Vehicle {self.agent.get_plate()}] Payment request sent to kiosk exit at park {park_manager_jid}.")
+            self.agent.logger.info("Payment request sent to kiosk exit")
 
 class RecvPaymentAmount(CyclicBehaviour):
     async def run(self):
@@ -158,7 +158,7 @@ class RecvPaymentAmount(CyclicBehaviour):
             msg_body = jsonpickle.decode(msg.body)
             amount = msg_body.get("amount")
 
-            print(f"[Vehicle {self.agent.get_plate()}] Payment amount received: {amount}€.")
+            self.agent.logger.info(f"Payment amount received: {amount}€")
 
             self.agent.add_behaviour(SendPayment(amount))
 
@@ -179,7 +179,7 @@ class SendPayment(OneShotBehaviour):
             })
         )
         await self.send(msg)
-        print(f"[Vehicle {self.agent.get_plate()}] Payment of {self.amount}€ sent to kiosk exit at park {park_manager_jid}.")
+        self.agent.logger.success(f"Payment of {self.amount}€ sent to kiosk exit")
 
 class SendExitRequest(OneShotBehaviour):
     async def run(self):
@@ -195,7 +195,7 @@ class SendExitRequest(OneShotBehaviour):
                 })
             )
             await self.send(msg)
-            print(f"[Vehicle {self.agent.get_plate()}] Exit request sent to barrier exit at park {park_manager_jid}.")
+            self.agent.logger.info("Exit request sent to barrier")
 
 class RecvPaymentWarning(CyclicBehaviour):
     async def run(self):
@@ -204,7 +204,7 @@ class RecvPaymentWarning(CyclicBehaviour):
             return
 
         if (msg.metadata.get("performative") == "payment_warning" and cfg.identify(msg.sender) == "park_manager"):
-            print(f"[Vehicle {self.agent.get_plate()}] Payment warning received from park manager.")
+            self.agent.logger.warning("Payment warning received from park manager")
             self.agent.add_behaviour(SendPaymentRequest())
 
 class RecvPaymentConfirmation(CyclicBehaviour):
@@ -214,7 +214,7 @@ class RecvPaymentConfirmation(CyclicBehaviour):
             return
 
         if (msg.metadata.get("performative") == "payment_confirmed" and cfg.identify(msg.sender) == "park_manager"):
-            print(f"[Vehicle {self.agent.get_plate()}] Payment confirmed by park manager.")
+            self.agent.logger.success("Payment confirmed by park manager")
             self.agent.add_behaviour(SendExitRequest())
 
 class VehicleRetryEntryRequestBehaviour(PeriodicBehaviour):
@@ -226,14 +226,14 @@ class VehicleRetryEntryRequestBehaviour(PeriodicBehaviour):
 
             park_manager_jid = cfg.get_park_jid(self.agent.get_location())
 
-            print(f"[Vehicle {self.agent.get_plate()}] Retrying entry request as vehicle is waiting at park {park_manager_jid}.")
+            self.agent.logger.warning("Retrying entry request")
         
         elif self.agent.is_waiting_at_park() and self.agent.get_entry_retries() > 1:
             self.agent.add_behaviour(SendExitWaitingZoneRequest())
             self.agent.add_behaviour(SendRedirectRequest())
             self.agent.set_waiting(False)
 
-            print(f"[Vehicle {self.agent.get_plate()}] Maximum entry retries reached, sending redirect request.")
+            self.agent.logger.warning("Maximum retries reached, requesting redirect")
 
 
 
@@ -244,7 +244,7 @@ class ReceiveCanExitResponse(CyclicBehaviour):
             return
 
         if (msg.metadata.get("performative") == "can_exit" and cfg.identify(msg.sender) == "park_manager"):
-            print(f"[Vehicle {self.agent.get_plate()}] Received confirmation to exit the park.")
+            self.agent.logger.success("Received confirmation to exit the park")
 
             self.agent.set_parked(False)
 
@@ -255,7 +255,7 @@ class ReceiveRedirectDenial(CyclicBehaviour):
             return
 
         if (msg.metadata.get("performative") == "redirect_park_response_none" and cfg.identify(msg.sender) == "central_manager"):
-            print(f"[Vehicle {self.agent.get_plate()}] Redirect request denied by central manager, going to wait zone.")
+            self.agent.logger.warning("Redirect denied by central manager, going to wait zone")
 
             self.agent.add_behaviour(WaitAtParkBehaviour())
 

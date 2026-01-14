@@ -17,7 +17,7 @@ class ReceiveExitRequest(CyclicBehaviour):
                 SendRequestPaymentCheck(vehicle_id)
             )
 
-            print(f"[Barrier Exit] Exit request received for vehicle {vehicle_id} in park {self.agent.park_jid}.")
+            self.agent.logger.info(f"Exit request received for vehicle {vehicle_id}")
 
 
 class SendRequestPaymentCheck(OneShotBehaviour):
@@ -47,7 +47,7 @@ class ReceivePaymentConfirmation(CyclicBehaviour):
             vehicle_id = msg_body["vehicle_id"]
 
             if msg.metadata.get("performative") == "confirm_payment":
-                print(f"[Barrier Exit] Barrier opened for vehicle {vehicle_id} in park {self.agent.park_jid}.")
+                self.agent.logger.success(f"Barrier opened for vehicle {vehicle_id}")
                 self.agent.add_behaviour(
                     SendExitConfirmation(sensor_jid)
                 )

@@ -1,4 +1,5 @@
 from spade.agent import Agent
+from Utils.agent_logger import create_vehicle_logger
 
 from .Behaviours.Vc_behav import *
 
@@ -6,6 +7,8 @@ class Vehicle(Agent):
     
     def __init__(self, jid, password, vehicle_type, user_type, location, redirect, vehicle_height, plate, skip_payment):
         super().__init__(jid, password)
+        
+        self.logger = create_vehicle_logger(plate)
         
         self.vehicle_type = vehicle_type
         self.user_type = user_type
