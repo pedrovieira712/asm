@@ -104,7 +104,7 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=4)
 
-    print("JSON de teste gerado com sucesso")
+    print("JSON de teste criado com sucesso")
     print(f"Parques: {len(parks)}")
     print(f"Veículos: {len(vehicles)}")
 

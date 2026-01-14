@@ -37,7 +37,6 @@ class GUI:
 
         self.agents = agents
 
-        # listas por tipo
         self.central = []
         self.kentrada = []
         self.ksaida = []
@@ -48,7 +47,6 @@ class GUI:
         self.veiculos = []
         self.espera = []
 
-        # labels
         self.labels = {
             "central": [],
             "kentrada": [],

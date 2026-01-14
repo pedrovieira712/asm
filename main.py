@@ -227,7 +227,6 @@ async def main_tests(scenario_file):
 
 
 async def main_interface():
-    """Modo interface interativo com menu"""
     await main_menu()
 
 
